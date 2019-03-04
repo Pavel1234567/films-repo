@@ -2,6 +2,6 @@ package com.andersen.internship.filmsapp.pojo.films
 
 class ListMedia{
 
-    var list: List<Film>? = null
+    lateinit var films: List<Film>
 
 }

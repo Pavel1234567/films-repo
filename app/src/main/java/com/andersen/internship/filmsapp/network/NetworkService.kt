@@ -1,5 +1,6 @@
 package com.andersen.internship.filmsapp.network
 
+import com.andersen.internship.filmsapp.network.api.FilmsApi
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -7,9 +8,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class NetworkService {
 
-    val retrofit: Retrofit
+    val filmsApi: FilmsApi
 
     init {
+        val retrofit: Retrofit
+
         val gsonBuilder = GsonBuilder()
 
         val gson = gsonBuilder.create()
@@ -18,6 +21,8 @@ class NetworkService {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
+
+        filmsApi = retrofit.create(FilmsApi::class.java)
 
     }
 }

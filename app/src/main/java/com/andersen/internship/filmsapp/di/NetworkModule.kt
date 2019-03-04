@@ -12,8 +12,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun networkService(): NetworkService =
-        NetworkService()
+    fun networkService(): NetworkService = NetworkService()
 
     @Singleton
     @Provides
