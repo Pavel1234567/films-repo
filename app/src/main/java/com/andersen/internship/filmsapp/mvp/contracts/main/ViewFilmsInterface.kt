@@ -9,6 +9,6 @@ interface ViewFilmsInterface : MvpView {
     fun showLoading()
     fun hideLoading()
     fun showError(message: String)
-    fun showFilms(list: ListMedia)
+    fun showFilms(list: List<Film>)
 
 }

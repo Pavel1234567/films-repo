@@ -34,7 +34,7 @@ class MainPresenter: MvpPresenter<ViewFilmsInterface>() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { list -> viewState.showFilms(list) },
+                { list -> viewState.showFilms(list.films) },
                 { e ->
                     viewState.hideLoading()
                     e.message?.let { viewState.showError(it) }
