@@ -8,7 +8,8 @@ import android.view.MenuItem
 import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmsInterface
 import com.andersen.internship.filmsapp.mvp.presenters.MainPresenter
-import com.andersen.internship.filmsapp.pojo.films.ListFilms
+import com.andersen.internship.filmsapp.pojo.films.Film
+import com.andersen.internship.filmsapp.pojo.films.ListMedia
 import com.arellomobile.mvp.presenter.InjectPresenter
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -60,7 +61,7 @@ class MainActivity : AppCompatActivity(), ViewFilmsInterface {
 
     }
 
-    override fun showFilms(list: ListFilms) {
+    override fun showFilms(list: ListMedia) {
 
     }
 }
