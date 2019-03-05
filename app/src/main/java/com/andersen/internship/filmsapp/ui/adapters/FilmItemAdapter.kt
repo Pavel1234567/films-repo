@@ -1,6 +1,8 @@
 package com.andersen.internship.filmsapp.ui.adapters
 
+import android.app.Activity
 import android.content.Context
+import android.graphics.Point
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -12,7 +14,7 @@ import com.andersen.internship.filmsapp.pojo.films.Film
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_films.view.*
 
-class FilmItemAdapter(private val context: Context) : RecyclerView.Adapter<FilmItemAdapter.FilmsHolder>() {
+class FilmItemAdapter(private val context: Activity) : RecyclerView.Adapter<FilmItemAdapter.FilmsHolder>() {
 
     var listFilms = emptyList<Film>()
         set(value) {
@@ -30,6 +32,22 @@ class FilmItemAdapter(private val context: Context) : RecyclerView.Adapter<FilmI
 
     override fun onBindViewHolder(filmsHolder: FilmsHolder, p1: Int) {
 
+        val display = context.windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val width = size.x
+        val height = size.y
+
+        var spanCount: Int = width/256
+
+        if(spanCount < 2) spanCount = 2
+
+        val widthImage = width/spanCount
+        val heightImage = height/spanCount
+
+        filmsHolder.imageViewPoster.maxWidth = widthImage
+        filmsHolder.imageViewPoster.maxHeight = heightImage
+
         val film = listFilms[p1]
         filmsHolder.titleTextView.setText(film.title)
 
@@ -42,5 +60,6 @@ class FilmItemAdapter(private val context: Context) : RecyclerView.Adapter<FilmI
 
         val titleTextView: TextView = itemView.titleTextView
         val imageViewPoster: ImageView = itemView.imageViewPoster
+        
     }
 }

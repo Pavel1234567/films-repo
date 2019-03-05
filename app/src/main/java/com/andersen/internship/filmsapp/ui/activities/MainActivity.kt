@@ -17,6 +17,8 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import timber.log.Timber
+import android.graphics.Point
+
 
 class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
 
@@ -27,7 +29,7 @@ class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(com.andersen.internship.filmsapp.R.layout.activity_main)
         setSupportActionBar(toolbar)
 
         if (savedInstanceState == null) {
@@ -39,19 +41,29 @@ class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
 
     private fun initRecyclerView() {
 
-        val gridLayoutManager = GridLayoutManager(this, 2)
+        val display = windowManager.defaultDisplay
+        val size = Point()
+        display.getSize(size)
+        val width = size.x
+
+        var spanCount: Int = width/256
+
+        if(spanCount < 2) spanCount = 2
+        else if(spanCount > 4) spanCount = 4
+
+        val gridLayoutManager = GridLayoutManager(this, spanCount)
         recyclerView.layoutManager = gridLayoutManager
         recyclerView.adapter = adapter
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_main, menu)
+        menuInflater.inflate(com.andersen.internship.filmsapp.R.menu.menu_main, menu)
         return true
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.action_settings -> true
+            com.andersen.internship.filmsapp.R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
         }
     }
