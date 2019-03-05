@@ -45,16 +45,8 @@ class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
 
     private fun initRecyclerView() {
 
-        val display = windowManager.defaultDisplay
-        val size = Point()
-        display.getSize(size)
-        val width = size.x
-
-        var spanCount: Int = width/256
-
-        if(spanCount < 2) spanCount = 2
-        else if(spanCount > 4) spanCount = 4
-
+        val calculator = FilmItemAdapter.SizeCalculator(this)
+        val spanCount = calculator.calculateSpanCount()
         val gridLayoutManager = GridLayoutManager(this, spanCount)
         recyclerView.layoutManager = gridLayoutManager as RecyclerView.LayoutManager?
         recyclerView.adapter = adapter
@@ -76,7 +68,6 @@ class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
         recyclerView.visibility = View.GONE
         progressbar.visibility = View.VISIBLE
         Timber.tag("myLogs").d("showLoading")
-
     }
 
     override fun hideLoading() {

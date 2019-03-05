@@ -1,7 +1,6 @@
 package com.andersen.internship.filmsapp.ui.adapters
 
 import android.app.Activity
-import android.content.Context
 import android.graphics.Point
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -13,8 +12,13 @@ import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.pojo.films.Film
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_films.view.*
+import timber.log.Timber
+import kotlin.math.roundToInt
 
-class FilmItemAdapter(private val context: Activity) : RecyclerView.Adapter<FilmItemAdapter.FilmsHolder>() {
+class FilmItemAdapter(private val activity: Activity) : RecyclerView.Adapter<FilmItemAdapter.FilmsHolder>() {
+
+    private var wigthImageView = 0
+    private var heidthImageView = 0
 
     var listFilms = emptyList<Film>()
         set(value) {
@@ -24,7 +28,11 @@ class FilmItemAdapter(private val context: Activity) : RecyclerView.Adapter<Film
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): FilmsHolder {
 
-        val cardView = LayoutInflater.from(context).inflate(R.layout.item_films, viewGroup, false)
+        val list = SizeCalculator(activity).calculateWidthAndHeidth()
+        wigthImageView = list[0]
+        heidthImageView = list[1]
+
+        val cardView = LayoutInflater.from(activity).inflate(R.layout.item_films, viewGroup, false)
         return FilmsHolder(cardView)
     }
 
@@ -32,33 +40,62 @@ class FilmItemAdapter(private val context: Activity) : RecyclerView.Adapter<Film
 
     override fun onBindViewHolder(filmsHolder: FilmsHolder, p1: Int) {
 
-        val display = context.windowManager.defaultDisplay
-        val size = Point()
-        display.getSize(size)
-        val width = size.x
-        val height = size.y
+        val imageView = filmsHolder.imageViewPoster
 
-        var spanCount: Int = width/256
-
-        if(spanCount < 2) spanCount = 2
-
-        val widthImage = (width - 16 - 2*(spanCount))/spanCount
-
-        filmsHolder.imageViewPoster.layoutParams.width = widthImage
-        filmsHolder.imageViewPoster.layoutParams.height = widthImage * 3 / 2
+        imageView.layoutParams.width = wigthImageView
+        imageView.layoutParams.height = heidthImageView
 
         val film = listFilms[p1]
         filmsHolder.titleTextView.setText(film.title)
 
         Picasso.get()
             .load(film.image)
-            .into(filmsHolder.imageViewPoster)
+            .into(imageView)
     }
 
     class FilmsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
         val titleTextView: TextView = itemView.titleTextView
         val imageViewPoster: ImageView = itemView.imageViewPoster
-        
+    }
+
+    class SizeCalculator(private val activity: Activity){
+
+        private var widthScreen: Int = 0
+
+
+        fun calculateWidthAndHeidth(): List<Int>{
+
+            val recyclerViewMargin = activity.resources.getDimension(R.dimen.recycler_view_margin).roundToInt()
+            val linearLayoutPadding = activity.resources.getDimension(R.dimen.linear_layout_padding).roundToInt()
+            val cardViewLayoutMargin = activity.resources.getDimension(R.dimen.card_view_layout_margin).roundToInt()
+            val spanCount = calculateSpanCount()
+
+            val widthImage = (calculateWidthScreen() - 2 * (recyclerViewMargin - spanCount * (linearLayoutPadding - cardViewLayoutMargin)))/spanCount
+            val heightImage = widthImage * 3/2
+            return listOf(widthImage, heightImage)
+        }
+
+        fun calculateSpanCount(): Int{
+
+            var spanCount: Int = calculateWidthScreen()/IMAGET_VIEW_APPROXIMATE_WIDTH
+            if(spanCount < MIN_SPAN_COUNT) spanCount = MIN_SPAN_COUNT
+            return spanCount
+        }
+
+        fun calculateWidthScreen():Int{
+            if (widthScreen == 0) {
+                val display = activity.windowManager.defaultDisplay
+                val size = Point()
+                display.getSize(size)
+                widthScreen = size.x
+            }
+            return widthScreen
+        }
     }
 }
+
+private val IMAGET_VIEW_APPROXIMATE_WIDTH = 256
+private val MIN_SPAN_COUNT = 2
+private val HEIGHT_WIDTH_RELATION = 3/2
+
+
