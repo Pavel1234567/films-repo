@@ -1,5 +1,6 @@
 package com.andersen.internship.filmsapp.ui.activities
 
+import android.app.ProgressDialog
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.widget.GridLayoutManager
@@ -18,6 +19,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import timber.log.Timber
 import android.graphics.Point
+import android.support.v7.widget.RecyclerView
+import android.view.View
+import android.widget.Toast
 
 
 class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
@@ -52,7 +56,7 @@ class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
         else if(spanCount > 4) spanCount = 4
 
         val gridLayoutManager = GridLayoutManager(this, spanCount)
-        recyclerView.layoutManager = gridLayoutManager
+        recyclerView.layoutManager = gridLayoutManager as RecyclerView.LayoutManager?
         recyclerView.adapter = adapter
     }
 
@@ -69,21 +73,24 @@ class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
     }
 
     override fun showLoading() {
+        recyclerView.visibility = View.GONE
+        progressbar.visibility = View.VISIBLE
         Timber.tag("myLogs").d("showLoading")
 
     }
 
     override fun hideLoading() {
+        progressbar.visibility = View.GONE
         Timber.tag("myLogs").d("hideLoading")
-
     }
 
     override fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
         Timber.tag("myLogs").d(message)
-
     }
 
     override fun showFilms(list: List<Film>) {
+        recyclerView.visibility = View.VISIBLE
         adapter.listFilms = list
     }
 }
