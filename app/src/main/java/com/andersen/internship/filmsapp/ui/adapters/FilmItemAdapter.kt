@@ -42,11 +42,10 @@ class FilmItemAdapter(private val context: Activity) : RecyclerView.Adapter<Film
 
         if(spanCount < 2) spanCount = 2
 
-        val widthImage = width/spanCount
-        val heightImage = height/spanCount
+        val widthImage = (width - 16 - 2*(spanCount))/spanCount
 
-        filmsHolder.imageViewPoster.maxWidth = widthImage
-        filmsHolder.imageViewPoster.maxHeight = heightImage
+        filmsHolder.imageViewPoster.layoutParams.width = widthImage
+        filmsHolder.imageViewPoster.layoutParams.height = widthImage * 3 / 2
 
         val film = listFilms[p1]
         filmsHolder.titleTextView.setText(film.title)
