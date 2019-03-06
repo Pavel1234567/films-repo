@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="2dp"
+        android:padding="@dimen/linear_layout_padding"
+        android:background="@color/colorPrimary"
         >
 
         <ImageView

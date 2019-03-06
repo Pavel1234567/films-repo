@@ -1,12 +1,13 @@
 package com.andersen.internship.filmsapp.mvp.view.activities
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
+import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
 import com.andersen.internship.filmsapp.mvp.presenters.MainPresenter
 import com.andersen.internship.filmsapp.pojo.films.Film
@@ -20,6 +21,8 @@ import javax.inject.Inject
 
 class MainActivity : BaseAppCompatActivity() {
 
+
+
     private val mainActivityComponent = DaggerMainActivityComponent.create()
 
     @Inject
@@ -31,10 +34,9 @@ class MainActivity : BaseAppCompatActivity() {
 
     private val adapter = FilmItemAdapter(this)
 
+    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        super.onCreate(savedInstanceState)
-        setContentView(com.andersen.internship.filmsapp.R.layout.activity_main)
+        onCreate(savedInstanceState, R.layout.activity_main)
         initRecyclerView()
     }
 
