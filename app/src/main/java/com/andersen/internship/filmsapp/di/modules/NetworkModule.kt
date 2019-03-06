@@ -1,5 +1,6 @@
 package com.andersen.internship.filmsapp.di.modules
 
+import com.andersen.internship.filmsapp.di.scopes.AppScope
 import com.andersen.internship.filmsapp.network.NetworkService
 import com.andersen.internship.filmsapp.mvp.contracts.main.ModelFilmsInterface
 import com.andersen.internship.filmsapp.mvp.models.MainModel
@@ -10,11 +11,11 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-    @Singleton
+    @AppScope
     @Provides
     fun networkService(): NetworkService = NetworkService()
 
-    @Singleton
+    @AppScope
     @Provides
     fun modelForFilms(): ModelFilmsInterface = MainModel()
 }
