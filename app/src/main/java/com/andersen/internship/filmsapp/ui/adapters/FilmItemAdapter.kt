@@ -12,13 +12,11 @@ import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.pojo.films.Film
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_films.view.*
-import timber.log.Timber
 import kotlin.math.roundToInt
 
 class FilmItemAdapter(private val activity: Activity) : RecyclerView.Adapter<FilmItemAdapter.FilmsHolder>() {
 
-    private var wigthImageView = 0
-    private var heidthImageView = 0
+    private lateinit var sizeOfImageView: SizeOfView
 
     var listFilms = emptyList<Film>()
         set(value) {
@@ -28,10 +26,7 @@ class FilmItemAdapter(private val activity: Activity) : RecyclerView.Adapter<Fil
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): FilmsHolder {
 
-        val list = SizeCalculator(activity).calculateWidthAndHeidth()
-        wigthImageView = list[0]
-        heidthImageView = list[1]
-
+        sizeOfImageView = SizeCalculator(activity).calculateWidthAndHeightOfView()
         val cardView = LayoutInflater.from(activity).inflate(R.layout.item_films, viewGroup, false)
         return FilmsHolder(cardView)
     }
@@ -41,13 +36,11 @@ class FilmItemAdapter(private val activity: Activity) : RecyclerView.Adapter<Fil
     override fun onBindViewHolder(filmsHolder: FilmsHolder, p1: Int) {
 
         val imageView = filmsHolder.imageViewPoster
-
-        imageView.layoutParams.width = wigthImageView
-        imageView.layoutParams.height = heidthImageView
+        imageView.layoutParams.width = sizeOfImageView.width
+        imageView.layoutParams.height = sizeOfImageView.height
 
         val film = listFilms[p1]
         filmsHolder.titleTextView.setText(film.title)
-
         Picasso.get()
             .load(film.image)
             .into(imageView)
@@ -63,7 +56,7 @@ class FilmItemAdapter(private val activity: Activity) : RecyclerView.Adapter<Fil
         private var widthScreen: Int = 0
 
 
-        fun calculateWidthAndHeidth(): List<Int>{
+        fun calculateWidthAndHeightOfView(): SizeOfView{
 
             val recyclerViewMargin = activity.resources.getDimension(R.dimen.recycler_view_margin).roundToInt()
             val linearLayoutPadding = activity.resources.getDimension(R.dimen.linear_layout_padding).roundToInt()
@@ -72,7 +65,8 @@ class FilmItemAdapter(private val activity: Activity) : RecyclerView.Adapter<Fil
 
             val widthImage = (calculateWidthScreen() - 2 * (recyclerViewMargin - spanCount * (linearLayoutPadding - cardViewLayoutMargin)))/spanCount
             val heightImage = widthImage * 3/2
-            return listOf(widthImage, heightImage)
+
+            return SizeOfView(widthImage, heightImage)
         }
 
         fun calculateSpanCount(): Int{
@@ -92,6 +86,8 @@ class FilmItemAdapter(private val activity: Activity) : RecyclerView.Adapter<Fil
             return widthScreen
         }
     }
+
+    data class SizeOfView(val width: Int, val height: Int)
 }
 
 private val IMAGET_VIEW_APPROXIMATE_WIDTH = 256
