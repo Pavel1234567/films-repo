@@ -1,29 +1,24 @@
 package com.andersen.internship.filmsapp.ui.activities
 
-import android.app.ProgressDialog
 import android.os.Bundle
-import android.support.design.widget.Snackbar
+import android.os.PersistableBundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.Menu
 import android.view.MenuItem
-import com.andersen.internship.filmsapp.R
-import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmsInterface
-import com.andersen.internship.filmsapp.mvp.presenters.MainPresenter
-import com.andersen.internship.filmsapp.pojo.films.Film
-import com.andersen.internship.filmsapp.pojo.films.ListMedia
-import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
-import com.arellomobile.mvp.MvpAppCompatActivity
-import com.arellomobile.mvp.presenter.InjectPresenter
-
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.content_main.*
-import timber.log.Timber
-import android.graphics.Point
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
 import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
+import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmsInterface
+import com.andersen.internship.filmsapp.mvp.presenters.MainPresenter
+import com.andersen.internship.filmsapp.pojo.films.Film
+import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
+import com.arellomobile.mvp.MvpAppCompatActivity
+import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
+import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -38,18 +33,13 @@ class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
     @ProvidePresenter
     fun providePresenter() = mainActivityComponent.injectMainActivity(this)
 
-
     private val adapter = FilmItemAdapter(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(com.andersen.internship.filmsapp.R.layout.activity_main)
         setSupportActionBar(toolbar)
-
-
-        if (savedInstanceState == null) {
-            mainPresenter.downloadList()
-        }
 
         initRecyclerView()
     }
@@ -92,7 +82,10 @@ class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
     }
 
     override fun showFilms(list: List<Film>) {
+        Timber.tag("myLogs").d("showFilms")
+
         recyclerView.visibility = View.VISIBLE
         adapter.listFilms = list
     }
+
 }

@@ -5,7 +5,6 @@ import com.andersen.internship.filmsapp.di.scopes.AppScope
 import com.andersen.internship.filmsapp.mvp.models.MainModel
 import com.andersen.internship.filmsapp.mvp.presenters.MainPresenter
 import dagger.Component
-import javax.inject.Singleton
 
 @Component(modules = arrayOf(NetworkModule::class))
 @AppScope

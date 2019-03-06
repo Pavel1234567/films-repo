@@ -7,8 +7,8 @@ import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Action
 import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
@@ -23,7 +23,12 @@ class MainPresenter: MvpPresenter<ViewFilmsInterface>() {
         component.injectMainModel(this)
     }
 
-    fun downloadList(){
+    override fun onFirstViewAttach() {
+        super.onFirstViewAttach()
+        downloadList()
+    }
+
+    private fun downloadList(){
         viewState.showLoading()
         if (compositeDisposable.size() > 0) {
             compositeDisposable.dispose()
