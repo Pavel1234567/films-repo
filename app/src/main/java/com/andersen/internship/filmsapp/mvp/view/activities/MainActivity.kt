@@ -1,7 +1,6 @@
-package com.andersen.internship.filmsapp.ui.activities
+package com.andersen.internship.filmsapp.mvp.view.activities
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.Menu
@@ -9,20 +8,17 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
-import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmsInterface
 import com.andersen.internship.filmsapp.mvp.presenters.MainPresenter
 import com.andersen.internship.filmsapp.pojo.films.Film
 import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
-import com.arellomobile.mvp.MvpAppCompatActivity
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 import timber.log.Timber
 import javax.inject.Inject
 
 
-class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
+class MainActivity : BaseAppCompatActivity() {
 
     private val mainActivityComponent = DaggerMainActivityComponent.create()
 
@@ -39,8 +35,6 @@ class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
 
         super.onCreate(savedInstanceState)
         setContentView(com.andersen.internship.filmsapp.R.layout.activity_main)
-        setSupportActionBar(toolbar)
-
         initRecyclerView()
     }
 
@@ -76,16 +70,10 @@ class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
         Timber.tag("myLogs").d("hideLoading")
     }
 
-    override fun showError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-        Timber.tag("myLogs").d(message)
-    }
-
     override fun showFilms(list: List<Film>) {
         Timber.tag("myLogs").d("showFilms")
 
         recyclerView.visibility = View.VISIBLE
         adapter.listFilms = list
     }
-
 }
