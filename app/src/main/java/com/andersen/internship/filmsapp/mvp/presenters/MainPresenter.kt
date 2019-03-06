@@ -43,8 +43,4 @@ class MainPresenter: MvpPresenter<ViewFilmsInterface>() {
 
         compositeDisposable.add(disposable)
     }
-
-    fun onListItemClicked(item: Int){
-
-    }
 }

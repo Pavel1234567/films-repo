@@ -22,12 +22,22 @@ import android.graphics.Point
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
+import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
+import com.arellomobile.mvp.presenter.ProvidePresenter
+import javax.inject.Inject
 
 
 class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
 
+    private val mainActivityComponent = DaggerMainActivityComponent.create()
+
+    @Inject
     @InjectPresenter
     lateinit var mainPresenter: MainPresenter
+
+    @ProvidePresenter
+    fun providePresenter() = mainActivityComponent.injectMainActivity(this)
+
 
     private val adapter = FilmItemAdapter(this)
 
@@ -35,6 +45,7 @@ class MainActivity : MvpAppCompatActivity(), ViewFilmsInterface {
         super.onCreate(savedInstanceState)
         setContentView(com.andersen.internship.filmsapp.R.layout.activity_main)
         setSupportActionBar(toolbar)
+
 
         if (savedInstanceState == null) {
             mainPresenter.downloadList()

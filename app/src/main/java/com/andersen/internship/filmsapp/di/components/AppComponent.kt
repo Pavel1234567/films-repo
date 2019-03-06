@@ -1,5 +1,6 @@
-package com.andersen.internship.filmsapp.di
+package com.andersen.internship.filmsapp.di.components
 
+import com.andersen.internship.filmsapp.di.modules.NetworkModule
 import com.andersen.internship.filmsapp.mvp.models.MainModel
 import com.andersen.internship.filmsapp.mvp.presenters.MainPresenter
 import dagger.Component

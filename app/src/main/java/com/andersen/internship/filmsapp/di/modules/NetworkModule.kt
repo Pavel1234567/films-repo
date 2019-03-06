@@ -1,4 +1,4 @@
-package com.andersen.internship.filmsapp.di
+package com.andersen.internship.filmsapp.di.modules
 
 import com.andersen.internship.filmsapp.network.NetworkService
 import com.andersen.internship.filmsapp.mvp.contracts.main.ModelFilmsInterface

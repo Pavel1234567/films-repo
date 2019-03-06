@@ -2,8 +2,8 @@ package com.andersen.internship.filmsapp
 
 import android.app.Application
 import android.os.Build
-import com.andersen.internship.filmsapp.di.AppComponent
-import com.andersen.internship.filmsapp.di.DaggerAppComponent
+import com.andersen.internship.filmsapp.di.components.AppComponent
+import com.andersen.internship.filmsapp.di.components.DaggerAppComponent
 import com.google.android.gms.security.ProviderInstaller
 import timber.log.Timber
 import javax.net.ssl.SSLContext
