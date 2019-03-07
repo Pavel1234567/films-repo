@@ -70,6 +70,7 @@ class MainActivity : BaseAppCompatActivity() {
     override fun hideLoading() {
         progressbar.visibility = View.GONE
         Timber.tag("myLogs").d("hideLoading")
+
     }
 
     override fun showFilms(list: List<Film>) {
