@@ -1,7 +1,7 @@
 package com.andersen.internship.filmsapp.di.modules
 
 import com.andersen.internship.filmsapp.di.scopes.ActivityScope
-import com.andersen.internship.filmsapp.mvp.presenters.MainPresenter
+import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
 import dagger.Module
 import dagger.Provides
 
@@ -10,5 +10,5 @@ class MainActivityModule {
 
     @ActivityScope
     @Provides
-    fun provideMainPresenter() = MainPresenter()
+    fun provideMainPresenter() = FilmsPresenter()
 }

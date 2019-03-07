@@ -9,7 +9,7 @@ import io.reactivex.Observable
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainModel: ModelFilmsInterface {
+class ModelFilmsRepository: ModelFilmsInterface {
 
     @Inject
     lateinit var networkService: NetworkService

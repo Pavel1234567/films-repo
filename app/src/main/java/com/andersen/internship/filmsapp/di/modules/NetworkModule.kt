@@ -1,20 +1,20 @@
 package com.andersen.internship.filmsapp.di.modules
 
-import com.andersen.internship.filmsapp.di.scopes.AppScope
 import com.andersen.internship.filmsapp.mvp.contracts.main.ModelFilmsInterface
-import com.andersen.internship.filmsapp.mvp.models.MainModel
+import com.andersen.internship.filmsapp.mvp.models.ModelFilmsRepository
 import com.andersen.internship.filmsapp.network.NetworkService
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 class NetworkModule {
 
-    @AppScope
+    @Singleton
     @Provides
     fun networkService(): NetworkService = NetworkService()
 
-    @AppScope
+    @Singleton
     @Provides
-    fun modelForFilms(): ModelFilmsInterface = MainModel()
+    fun modelForFilms(): ModelFilmsInterface = ModelFilmsRepository()
 }

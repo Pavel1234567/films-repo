@@ -9,7 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
-import com.andersen.internship.filmsapp.mvp.presenters.MainPresenter
+import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
 import com.andersen.internship.filmsapp.pojo.films.Film
 import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
 import com.arellomobile.mvp.presenter.InjectPresenter
@@ -27,7 +27,7 @@ class MainActivity : BaseAppCompatActivity() {
 
     @Inject
     @InjectPresenter
-    lateinit var mainPresenter: MainPresenter
+    lateinit var filmsPresenter: FilmsPresenter
 
     @ProvidePresenter
     fun providePresenter() = mainActivityComponent.injectMainActivity(this)

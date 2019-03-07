@@ -12,7 +12,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
-class MainPresenter: MvpPresenter<ViewFilmsInterface>() {
+class FilmsPresenter: MvpPresenter<ViewFilmsInterface>() {
 
     private var compositeDisposable = CompositeDisposable()
 
