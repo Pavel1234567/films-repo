@@ -12,6 +12,10 @@ class App: Application() {
 
     override fun onCreate() {
         super.onCreate()
+        if(BuildConfig.DEBUG){
+            Timber.plant(Timber.DebugTree())
+        }
+
 
         if (android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
             solveSSLHandHandshakeError()
@@ -19,9 +23,12 @@ class App: Application() {
 
         component = DaggerAppComponent.create()
 
-        if(BuildConfig.DEBUG){
-            Timber.plant(Timber.DebugTree())
-        }
+        val model = component.getModel()
+
+        Timber.tag("myLog").d("App model ${model.hashCode()}")
+        Timber.tag("myLog").d("App networkService ${model.networkService.hashCode()}")
+
+
     }
 
     private fun solveSSLHandHandshakeError(){

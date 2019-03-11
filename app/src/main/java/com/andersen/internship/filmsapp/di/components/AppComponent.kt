@@ -10,6 +10,5 @@ import javax.inject.Singleton
 @Singleton
 interface AppComponent {
 
-    fun injectNetworkService(modelFilmsRepositoryFilmsInterface: ModelFilmsRepository)
-    fun injectMainModel(filmsPresenter: FilmsPresenter)
+    fun getModel(): ModelFilmsRepository
 }

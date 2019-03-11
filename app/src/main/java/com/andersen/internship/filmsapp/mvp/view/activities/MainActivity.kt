@@ -4,11 +4,11 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import com.andersen.internship.filmsapp.R
+import com.andersen.internship.filmsapp.component
 import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
+import com.andersen.internship.filmsapp.di.modules.MainActivityModule
 import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
 import com.andersen.internship.filmsapp.pojo.films.Film
 import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
@@ -21,23 +21,30 @@ import javax.inject.Inject
 
 class MainActivity : BaseAppCompatActivity() {
 
-
-
-    private val mainActivityComponent = DaggerMainActivityComponent.create()
+    private val mainActivityComponent = DaggerMainActivityComponent
+        .builder()
+        .mainActivityModule(MainActivityModule())
+        .appComponent(component)
+        .build()
 
     @Inject
     @InjectPresenter
     lateinit var filmsPresenter: FilmsPresenter
 
     @ProvidePresenter
-    fun providePresenter() = mainActivityComponent.injectMainActivity(this)
+    fun providePresenter() = filmsPresenter
 
     private val adapter = FilmItemAdapter(this)
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         onCreate(savedInstanceState, R.layout.activity_main)
+        mainActivityComponent.injectMainActivity(this)
         initRecyclerView()
+        Timber.tag("myLogs").d("MainActivity filmsPresenter ${filmsPresenter.hashCode()}")
+        Timber.tag("myLogs").d("MainActivity modelFilmsRepository ${filmsPresenter.modelFilmsRepository.hashCode()}")
+        Timber.tag("myLogs").d("MainActivity networkService ${filmsPresenter.modelFilmsRepository.networkService.hashCode()}")
     }
 
     private fun initRecyclerView() {
@@ -49,19 +56,8 @@ class MainActivity : BaseAppCompatActivity() {
         recyclerView.adapter = adapter
     }
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(com.andersen.internship.filmsapp.R.menu.menu_main, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            com.andersen.internship.filmsapp.R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
     override fun showLoading() {
+
         recyclerView.visibility = View.GONE
         progressbar.visibility = View.VISIBLE
         Timber.tag("myLogs").d("showLoading")
@@ -70,12 +66,11 @@ class MainActivity : BaseAppCompatActivity() {
     override fun hideLoading() {
         progressbar.visibility = View.GONE
         Timber.tag("myLogs").d("hideLoading")
-
     }
 
     override fun showFilms(list: List<Film>) {
-        Timber.tag("myLogs").d("showFilms")
 
+        Timber.tag("myLogs").d("showFilms")
         recyclerView.visibility = View.VISIBLE
         adapter.listFilms = list
     }

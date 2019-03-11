@@ -9,14 +9,7 @@ import io.reactivex.Observable
 import timber.log.Timber
 import javax.inject.Inject
 
-class ModelFilmsRepository: ModelFilmsInterface {
-
-    @Inject
-    lateinit var networkService: NetworkService
-
-    init {
-        component.injectNetworkService(this)
-    }
+class ModelFilmsRepository @Inject constructor(val networkService: NetworkService): ModelFilmsInterface {
 
     override fun loadFilms(): Observable<ListMedia> {
 

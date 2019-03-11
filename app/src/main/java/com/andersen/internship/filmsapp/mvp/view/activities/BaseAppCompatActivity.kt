@@ -1,15 +1,17 @@
 package com.andersen.internship.filmsapp.mvp.view.activities
 
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmsInterface
 import com.arellomobile.mvp.MvpAppCompatActivity
 import kotlinx.android.synthetic.main.toolbar.*
 import timber.log.Timber
 
-abstract class BaseAppCompatActivity: MvpAppCompatActivity(), ViewFilmsInterface {
+abstract class BaseAppCompatActivity: AppCompatActivity(), ViewFilmsInterface {
 
     protected fun onCreate(savedInstanceState: Bundle?, layoutId: Int){
+
         super.onCreate(savedInstanceState)
         setContentView(layoutId)
         setSupportActionBar(toolbar)

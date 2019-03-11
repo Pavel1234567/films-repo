@@ -16,5 +16,5 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun modelForFilms(): ModelFilmsInterface = ModelFilmsRepository()
+    fun modelForFilms(networkService: NetworkService): ModelFilmsRepository = ModelFilmsRepository(networkService)
 }

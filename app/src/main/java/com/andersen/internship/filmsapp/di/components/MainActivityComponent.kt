@@ -6,7 +6,7 @@ import com.andersen.internship.filmsapp.mvp.view.activities.MainActivity
 import dagger.Component
 
 @ActivityScope
-@Component(modules = arrayOf(MainActivityModule::class))
+@Component(modules = arrayOf(MainActivityModule::class), dependencies = arrayOf(AppComponent::class))
 interface MainActivityComponent {
 
     fun injectMainActivity(mainActivity: MainActivity)

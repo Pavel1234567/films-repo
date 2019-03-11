@@ -1,8 +1,7 @@
 package com.andersen.internship.filmsapp.mvp.presenters
 
-import com.andersen.internship.filmsapp.component
-import com.andersen.internship.filmsapp.mvp.contracts.main.ModelFilmsInterface
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmsInterface
+import com.andersen.internship.filmsapp.mvp.models.ModelFilmsRepository
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -12,19 +11,14 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
-class FilmsPresenter: MvpPresenter<ViewFilmsInterface>() {
+class FilmsPresenter @Inject constructor(val modelFilmsRepository: ModelFilmsRepository): MvpPresenter<ViewFilmsInterface>() {
 
     private var compositeDisposable = CompositeDisposable()
 
-    @Inject
-    lateinit var modelFilmsInterface: ModelFilmsInterface
-
-    init {
-        component.injectMainModel(this)
-    }
-
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
+        Timber.tag("myLog").d("onFirstViewAttach")
+
         downloadList()
     }
 
@@ -34,7 +28,7 @@ class FilmsPresenter: MvpPresenter<ViewFilmsInterface>() {
             compositeDisposable.dispose()
             compositeDisposable = CompositeDisposable()
         }
-        val disposable = modelFilmsInterface
+        val disposable = modelFilmsRepository
             .loadFilms()
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
