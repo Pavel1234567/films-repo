@@ -6,6 +6,7 @@ import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.andersen.internship.filmsapp.R
+import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.component
 import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
@@ -23,7 +24,7 @@ class MainActivity : BaseAppCompatActivity() {
 
     private val mainActivityComponent = DaggerMainActivityComponent
         .builder()
-        .mainActivityModule(MainActivityModule())
+        .mainActivityModule(MainActivityModule(this))
         .appComponent(component)
         .build()
 
@@ -34,7 +35,12 @@ class MainActivity : BaseAppCompatActivity() {
     @ProvidePresenter
     fun providePresenter() = filmsPresenter
 
-    private val adapter = FilmItemAdapter(this)
+    @Inject
+    lateinit var sizeCalculator: SizeCalculator
+
+    @Inject
+    lateinit var adapter: FilmItemAdapter
+
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,11 +55,11 @@ class MainActivity : BaseAppCompatActivity() {
 
     private fun initRecyclerView() {
 
-        val calculator = FilmItemAdapter.SizeCalculator(this)
-        val spanCount = calculator.calculateSpanCount()
+        val spanCount = sizeCalculator.calculateSpanCount()
         val gridLayoutManager = GridLayoutManager(this, spanCount)
-        recyclerView.layoutManager = gridLayoutManager as RecyclerView.LayoutManager?
+
         recyclerView.adapter = adapter
+        recyclerView.layoutManager = gridLayoutManager as RecyclerView.LayoutManager?
     }
 
     override fun showLoading() {
