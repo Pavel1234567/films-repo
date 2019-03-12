@@ -10,7 +10,7 @@ class SizeCalculator @Inject constructor(private val activity: Activity){
     private var widthScreen: Int = 0
 
 
-    fun calculateWidthAndHeightOfView(): SizeOfView{
+    fun calculateWidthAndHeightOfView(): Pair<Int, Int>{
 
         val recyclerViewMargin = activity.resources.getDimension(R.dimen.recycler_view_margin).roundToInt()
         val linearLayoutPadding = activity.resources.getDimension(R.dimen.linear_layout_padding).roundToInt()
@@ -20,7 +20,7 @@ class SizeCalculator @Inject constructor(private val activity: Activity){
         val widthImage = (calculateWidthScreen() - 2 * (recyclerViewMargin - spanCount * (linearLayoutPadding - cardViewLayoutMargin)))/spanCount
         val heightImage = widthImage * 3/2
 
-        return SizeOfView(widthImage, heightImage)
+        return Pair(widthImage, heightImage)
     }
 
     fun calculateSpanCount(): Int{
@@ -40,8 +40,6 @@ class SizeCalculator @Inject constructor(private val activity: Activity){
         return widthScreen
     }
 }
-
-data class SizeOfView(val width: Int, val height: Int)
 
 private val IMAGET_VIEW_APPROXIMATE_WIDTH = 256
 private val MIN_SPAN_COUNT = 2
