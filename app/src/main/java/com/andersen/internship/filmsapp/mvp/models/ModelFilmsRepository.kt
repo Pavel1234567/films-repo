@@ -1,6 +1,5 @@
 package com.andersen.internship.filmsapp.mvp.models
 
-import com.andersen.internship.filmsapp.component
 import com.andersen.internship.filmsapp.mvp.contracts.main.ModelFilmsInterface
 import com.andersen.internship.filmsapp.network.NetworkService
 import com.andersen.internship.filmsapp.pojo.films.Film
@@ -9,7 +8,7 @@ import io.reactivex.Observable
 import timber.log.Timber
 import javax.inject.Inject
 
-class ModelFilmsRepository @Inject constructor(val networkService: NetworkService): ModelFilmsInterface {
+class ModelFilmsRepository @Inject constructor(private val networkService: NetworkService): ModelFilmsInterface {
 
     override fun loadFilms(): Observable<ListMedia> {
 

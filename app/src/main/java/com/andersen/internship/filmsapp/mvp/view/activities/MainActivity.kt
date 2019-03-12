@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.andersen.internship.filmsapp.R
-import com.andersen.internship.filmsapp.SizeCalculator
-import com.andersen.internship.filmsapp.component
+import com.andersen.internship.filmsapp.*
 import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
 import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
@@ -22,12 +20,6 @@ import javax.inject.Inject
 
 class MainActivity : BaseAppCompatActivity() {
 
-    private val mainActivityComponent = DaggerMainActivityComponent
-        .builder()
-        .mainActivityModule(MainActivityModule(this))
-        .appComponent(component)
-        .build()
-
     @Inject
     @InjectPresenter
     lateinit var filmsPresenter: FilmsPresenter
@@ -41,16 +33,20 @@ class MainActivity : BaseAppCompatActivity() {
     @Inject
     lateinit var adapter: FilmItemAdapter
 
-
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
+        val mainActivityComponent = DaggerMainActivityComponent
+            .builder()
+            .mainActivityModule(MainActivityModule(this))
+            .appComponent(get(this).appComponent)
+            .build()
+
+        mainActivityComponent.injectMainActivity(this)
 
         onCreate(savedInstanceState, R.layout.activity_main)
-        mainActivityComponent.injectMainActivity(this)
+
         initRecyclerView()
         Timber.tag("myLogs").d("MainActivity filmsPresenter ${filmsPresenter.hashCode()}")
-        Timber.tag("myLogs").d("MainActivity modelFilmsRepository ${filmsPresenter.modelFilmsRepository.hashCode()}")
-        Timber.tag("myLogs").d("MainActivity networkService ${filmsPresenter.modelFilmsRepository.networkService.hashCode()}")
     }
 
     private fun initRecyclerView() {

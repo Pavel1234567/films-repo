@@ -8,7 +8,7 @@ import com.arellomobile.mvp.MvpAppCompatActivity
 import kotlinx.android.synthetic.main.toolbar.*
 import timber.log.Timber
 
-abstract class BaseAppCompatActivity: AppCompatActivity(), ViewFilmsInterface {
+abstract class BaseAppCompatActivity: MvpAppCompatActivity(), ViewFilmsInterface {
 
     protected fun onCreate(savedInstanceState: Bundle?, layoutId: Int){
 

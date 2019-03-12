@@ -11,7 +11,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
-class FilmsPresenter @Inject constructor(val modelFilmsRepository: ModelFilmsRepository): MvpPresenter<ViewFilmsInterface>() {
+class FilmsPresenter @Inject constructor(private val modelFilmsRepository: ModelFilmsRepository): MvpPresenter<ViewFilmsInterface>() {
 
     private var compositeDisposable = CompositeDisposable()
 
