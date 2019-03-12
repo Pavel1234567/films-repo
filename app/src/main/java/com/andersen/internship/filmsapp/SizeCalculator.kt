@@ -39,8 +39,13 @@ class SizeCalculator @Inject constructor(private val activity: Activity){
         }
         return widthScreen
     }
+
+    companion object {
+        private val IMAGET_VIEW_APPROXIMATE_WIDTH = 256
+        private val MIN_SPAN_COUNT = 2
+        private val HEIGHT_WIDTH_RELATION = 3/2
+
+    }
 }
 
-private val IMAGET_VIEW_APPROXIMATE_WIDTH = 256
-private val MIN_SPAN_COUNT = 2
-private val HEIGHT_WIDTH_RELATION = 3/2
+
