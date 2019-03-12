@@ -41,7 +41,7 @@ class FilmItemAdapter @Inject constructor(
             .load(film.image)
             .into(imageView)
 
-        filmsHolder.cardView.setOnClickListener { onItemClickListener.onItemClick(position) }
+        filmsHolder.cardView.setOnClickListener { onItemClickListener.onItemClick(film.id) }
     }
 
     class FilmsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -51,7 +51,7 @@ class FilmItemAdapter @Inject constructor(
     }
 
     interface OnItemClickListener{
-        fun onItemClick(position: Int)
+        fun onItemClick(id: Int)
     }
 
 }

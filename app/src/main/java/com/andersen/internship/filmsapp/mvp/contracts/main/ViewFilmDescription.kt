@@ -5,7 +5,7 @@ import com.arellomobile.mvp.MvpView
 import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
-interface ViewFilmDescription :MvpView, BaseViewInterface{
+interface ViewFilmDescription :BaseViewInterface{
     @StateStrategyType(AddToEndStrategy ::class)
     fun showDescription(description: FilmDescription)
 

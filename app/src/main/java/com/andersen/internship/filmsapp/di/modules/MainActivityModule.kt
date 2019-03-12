@@ -15,7 +15,6 @@ import dagger.Provides
 @Module
 class MainActivityModule(private val mainActivity: MainActivity) {
 
-
     @MainActivityScope
     @Provides
     fun sizeCalculator() = SizeCalculator(mainActivity)
@@ -28,11 +27,10 @@ class MainActivityModule(private val mainActivity: MainActivity) {
     @Provides
     fun onItemClickListener(): FilmItemAdapter.OnItemClickListener{
         val onItemClickListener = object : FilmItemAdapter.OnItemClickListener {
-            override fun onItemClick(position: Int) {
+            override fun onItemClick(id: Int) {
                 val intent = Intent(mainActivity, DescriptionActivity::class.java)
-                intent.putExtra(ITEM_POSITION, position)
+                intent.putExtra(ITEM_POSITION, id)
                 mainActivity.startActivity(intent)
-                Toast.makeText(mainActivity, "$position", Toast.LENGTH_LONG).show()
             }
         }
         return onItemClickListener

@@ -35,6 +35,6 @@ class NetworkModule {
     fun gson() = GsonBuilder().create()
 
     companion object {
-        private val BASE_URL = "https://gist.github.com/giffell/"
+        private val BASE_URL = "https://gist.github.com/giffell/d95a42738dd91feefb28d9947f8d4fff/raw/3bbb3933cdfc1513e602dbffc83bbc401236f71f/"
     }
 }
