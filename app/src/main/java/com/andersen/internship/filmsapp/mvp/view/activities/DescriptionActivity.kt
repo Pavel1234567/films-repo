@@ -6,10 +6,9 @@ import com.andersen.internship.filmsapp.App
 import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.di.components.DaggerDescriptionActivityComponent
 import com.andersen.internship.filmsapp.di.modules.DescriptionActivityModule
-import com.andersen.internship.filmsapp.di.modules.MainActivityModule.Companion.ITEM_POSITION
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmDescription
 import com.andersen.internship.filmsapp.mvp.presenters.FilmDescriptionPresenter
-import com.andersen.internship.filmsapp.pojo.films.FilmDescription
+import com.andersen.internship.filmsapp.pojo.films.Film
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.activity_description.*
@@ -32,7 +31,7 @@ class DescriptionActivity : BaseAppCompatActivity(), ViewFilmDescription {
         //TODO To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun showDescription(description: FilmDescription) {
+    override fun showDescription(description: Film) {
         textView.setText(description.toString())
     }
 

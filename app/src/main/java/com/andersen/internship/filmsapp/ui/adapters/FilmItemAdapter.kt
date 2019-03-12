@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.andersen.internship.filmsapp.R
-import com.andersen.internship.filmsapp.pojo.films.Film
+import com.andersen.internship.filmsapp.pojo.films.FilmDTO
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_films.view.*
 import javax.inject.Inject
@@ -16,7 +16,7 @@ class FilmItemAdapter @Inject constructor(
     private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<FilmItemAdapter.FilmsHolder>() {
 
-    var listFilms = emptyList<Film>()
+    var listFilms = emptyList<FilmDTO>()
         set(value) {
             field = value
             notifyDataSetChanged()

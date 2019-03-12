@@ -1,10 +1,8 @@
 package com.andersen.internship.filmsapp.mvp.presenters
 
-import com.andersen.internship.filmsapp.mvp.contracts.main.BaseViewInterface
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewListFilms
 import com.andersen.internship.filmsapp.mvp.models.ModelFilmsRepository
-import com.andersen.internship.filmsapp.pojo.films.Film
-import com.andersen.internship.filmsapp.pojo.films.FilmDescription
+import com.andersen.internship.filmsapp.pojo.films.FilmDTO
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -36,7 +34,7 @@ class FilmsPresenter @Inject constructor(private val modelFilmsRepository: Model
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { list ->
-                    val handledList: List<Film> = list.films.map { Film(it.id, it.title, it.image) }
+                    val handledList: List<FilmDTO> = list.films.map { FilmDTO(it.id, it.title, it.image) }
                     viewState.showFilms(handledList)
                 },
                 { e ->

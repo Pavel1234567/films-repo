@@ -8,10 +8,9 @@ import android.view.View
 import com.andersen.internship.filmsapp.*
 import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
-import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmDescription
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewListFilms
 import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
-import com.andersen.internship.filmsapp.pojo.films.Film
+import com.andersen.internship.filmsapp.pojo.films.FilmDTO
 import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
@@ -72,7 +71,7 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
         Timber.tag("myLogs").d("hideLoading")
     }
 
-    override fun showFilms(list: List<Film>) {
+    override fun showFilms(list: List<FilmDTO>) {
 
         Timber.tag("myLogs").d("showFilms")
         recyclerView.visibility = View.VISIBLE

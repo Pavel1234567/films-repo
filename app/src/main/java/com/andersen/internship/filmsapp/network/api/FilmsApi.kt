@@ -1,6 +1,6 @@
 package com.andersen.internship.filmsapp.network.api
 
-import com.andersen.internship.filmsapp.pojo.films.FilmDescription
+import com.andersen.internship.filmsapp.pojo.films.Film
 import com.andersen.internship.filmsapp.pojo.films.ListFilms
 import retrofit2.http.GET
 import io.reactivex.Observable
@@ -13,5 +13,5 @@ interface FilmsApi {
     fun getList() : Observable<ListFilms>
 
     @GET("films.json/films/{id}")
-    fun getDescription(@Query("id")id: Int): Observable<FilmDescription>
+    fun getDescription(@Query("id")id: Int): Observable<Film>
 }
