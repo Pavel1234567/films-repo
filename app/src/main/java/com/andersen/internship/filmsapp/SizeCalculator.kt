@@ -12,9 +12,9 @@ class SizeCalculator @Inject constructor(private val activity: Activity){
 
     fun calculateWidthAndHeightOfView(): Pair<Int, Int>{
 
-        val recyclerViewMargin = activity.resources.getDimension(R.dimen.recycler_view_margin).roundToInt()
-        val linearLayoutPadding = activity.resources.getDimension(R.dimen.linear_layout_padding).roundToInt()
-        val cardViewLayoutMargin = activity.resources.getDimension(R.dimen.card_view_layout_margin).roundToInt()
+        val recyclerViewMargin = activity.resources.getDimensionPixelSize(R.dimen.recycler_view_margin)
+        val linearLayoutPadding = activity.resources.getDimensionPixelSize(R.dimen.linear_layout_padding)
+        val cardViewLayoutMargin = activity.resources.getDimensionPixelSize(R.dimen.card_view_layout_margin)
         val spanCount = calculateSpanCount()
 
         val widthImage = (calculateWidthScreen() - 2 * (recyclerViewMargin - spanCount * (linearLayoutPadding - cardViewLayoutMargin)))/spanCount
