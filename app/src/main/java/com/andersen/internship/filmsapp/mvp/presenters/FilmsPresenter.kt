@@ -12,9 +12,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
-class FilmsPresenter @Inject constructor(private val modelFilmsRepository: ModelFilmsRepository): MvpPresenter<ViewListFilms>() {
-
-    private var compositeDisposable = CompositeDisposable()
+class FilmsPresenter @Inject constructor(private val modelFilmsRepository: ModelFilmsRepository): BasePresenter<ViewListFilms>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
@@ -44,10 +42,5 @@ class FilmsPresenter @Inject constructor(private val modelFilmsRepository: Model
                 {viewState.hideLoading()})
 
         compositeDisposable.add(disposable)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.dispose()
     }
 }

@@ -14,9 +14,7 @@ import javax.inject.Inject
 class FilmDescriptionPresenter @Inject constructor(
         private val modelFilmsRepository: ModelFilmsRepository,
         private val selectedItemId: Int
-): MvpPresenter<ViewFilmDescription>(){
-
-    private var compositeDisposable = CompositeDisposable()
+): BasePresenter<ViewFilmDescription>(){
 
     override fun onFirstViewAttach() {
 
@@ -44,10 +42,5 @@ class FilmDescriptionPresenter @Inject constructor(
                         {viewState.hideLoading()})
 
         compositeDisposable.add(disposable)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.dispose()
     }
 }
