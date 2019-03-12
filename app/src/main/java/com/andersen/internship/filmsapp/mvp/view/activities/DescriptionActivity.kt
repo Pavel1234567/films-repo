@@ -11,6 +11,7 @@ import com.andersen.internship.filmsapp.mvp.presenters.FilmDescriptionPresenter
 import com.andersen.internship.filmsapp.pojo.films.Film
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_description.*
 import javax.inject.Inject
 
@@ -31,8 +32,19 @@ class DescriptionActivity : BaseAppCompatActivity(), ViewFilmDescription {
         //TODO To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun showDescription(description: Film) {
-        textView.setText(description.toString())
+    override fun showDescription(film: Film) {
+
+        //TODO список без скобок
+
+        Picasso.get()
+                .load(film.image)
+                .into(imageView)
+        countryTextView.setText(film.country.toString())
+
+        titleTextView.setText(film.title)
+        yearTextView.setText("${film.year}")
+        genreTextView.setText(film.genre.toString())
+        descriptionTextView.setText(film.description)
     }
 
     @SuppressLint("MissingSuperCall")

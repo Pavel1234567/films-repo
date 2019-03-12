@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Films App</string>
     <string name="action_settings">Settings</string>
+    <string name="year">год</string>
+    <string name="country">страна</string>
+    <string name="genre">жанр</string>
 </resources>
