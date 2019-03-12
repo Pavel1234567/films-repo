@@ -40,7 +40,7 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
         val mainActivityComponent = DaggerMainActivityComponent
             .builder()
             .mainActivityModule(MainActivityModule(this))
-            .appComponent(get(this).appComponent)
+            .appComponent(App.get(this).appComponent)
             .build()
 
         mainActivityComponent.injectMainActivity(this)

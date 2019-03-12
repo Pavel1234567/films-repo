@@ -33,8 +33,11 @@ class App: Application() {
         val sslContext = SSLContext.getInstance("TLSv1.2")
         sslContext.init(null, null, null)
     }
+
+    companion object {
+        fun get(activity: Activity): App {
+            return activity.application as App
+        }
+    }
 }
 
-fun get(activity: Activity): App {
-    return activity.application as App
-}

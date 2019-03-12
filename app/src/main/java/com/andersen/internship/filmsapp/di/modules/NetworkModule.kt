@@ -33,6 +33,8 @@ class NetworkModule {
     @Singleton
     @Provides
     fun gson() = GsonBuilder().create()
-}
 
-private val BASE_URL = "https://gist.github.com/giffell/"
+    companion object {
+        private val BASE_URL = "https://gist.github.com/giffell/"
+    }
+}

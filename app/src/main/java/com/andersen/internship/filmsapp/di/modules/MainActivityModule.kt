@@ -6,6 +6,7 @@ import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.di.scopes.MainActivityScope
 import com.andersen.internship.filmsapp.mvp.models.ModelFilmsRepository
 import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
+import com.andersen.internship.filmsapp.mvp.view.activities.DescriptionActivity
 import com.andersen.internship.filmsapp.mvp.view.activities.MainActivity
 import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
 import dagger.Module
@@ -22,13 +23,15 @@ class MainActivityModule(private val mainActivity: MainActivity) {
     @MainActivityScope
     @Provides
     fun widthAndHeightOfImageView(sizeCalculator: SizeCalculator) = sizeCalculator.calculateWidthAndHeightOfView()
-    
+
     @MainActivityScope
     @Provides
     fun onItemClickListener(): FilmItemAdapter.OnItemClickListener{
         val onItemClickListener = object : FilmItemAdapter.OnItemClickListener {
             override fun onItemClick(position: Int) {
-
+                val intent = Intent(mainActivity, DescriptionActivity::class.java)
+                intent.putExtra(ITEM_POSITION, position)
+                mainActivity.startActivity(intent)
                 Toast.makeText(mainActivity, "$position", Toast.LENGTH_LONG).show()
             }
         }
@@ -40,4 +43,7 @@ class MainActivityModule(private val mainActivity: MainActivity) {
     fun provideMainPresenter(modelFilmsRepository: ModelFilmsRepository): FilmsPresenter =
         FilmsPresenter(modelFilmsRepository)
 
+    companion object {
+        val ITEM_POSITION = "ITEM_POSITION"
+    }
 }
