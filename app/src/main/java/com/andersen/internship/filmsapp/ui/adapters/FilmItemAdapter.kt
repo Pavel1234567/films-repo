@@ -9,8 +9,9 @@ import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.pojo.films.Film
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_films.view.*
+import javax.inject.Inject
 
-class FilmItemAdapter(
+class FilmItemAdapter @Inject constructor(
     private val widthAndHeightOfImageView: Pair<Int, Int>,
     private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<FilmItemAdapter.FilmsHolder>() {

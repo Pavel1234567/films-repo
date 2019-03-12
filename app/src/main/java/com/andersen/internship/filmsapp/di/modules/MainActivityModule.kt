@@ -21,10 +21,8 @@ class MainActivityModule(private val mainActivity: MainActivity) {
 
     @MainActivityScope
     @Provides
-    fun filmItemAdapter(sizeCalculator: SizeCalculator, onItemClickListener: FilmItemAdapter.OnItemClickListener
-    ): FilmItemAdapter =
-         FilmItemAdapter(sizeCalculator.calculateWidthAndHeightOfView(), onItemClickListener)
-
+    fun widthAndHeightOfImageView(sizeCalculator: SizeCalculator) = sizeCalculator.calculateWidthAndHeightOfView()
+    
     @MainActivityScope
     @Provides
     fun onItemClickListener(): FilmItemAdapter.OnItemClickListener{
