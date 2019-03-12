@@ -8,6 +8,8 @@ import android.view.View
 import com.andersen.internship.filmsapp.*
 import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
+import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmDescription
+import com.andersen.internship.filmsapp.mvp.contracts.main.ViewListFilms
 import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
 import com.andersen.internship.filmsapp.pojo.films.Film
 import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
@@ -18,7 +20,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 
-class MainActivity : BaseAppCompatActivity() {
+class MainActivity : BaseAppCompatActivity(), ViewListFilms {
 
     @Inject
     @InjectPresenter

@@ -6,7 +6,7 @@ import com.arellomobile.mvp.viewstate.strategy.AddToEndStrategy
 import com.arellomobile.mvp.viewstate.strategy.SkipStrategy
 import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 
-interface ViewFilmsInterface : MvpView {
+interface BaseViewInterface  {
 
     @StateStrategyType(SkipStrategy::class)
     fun showLoading()
@@ -16,8 +16,5 @@ interface ViewFilmsInterface : MvpView {
 
     @StateStrategyType(SkipStrategy::class)
     fun showError(message: String)
-
-    @StateStrategyType(AddToEndStrategy ::class)
-    fun showFilms(list: List<Film>)
 
 }

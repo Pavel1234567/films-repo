@@ -1,6 +1,7 @@
 package com.andersen.internship.filmsapp.mvp.presenters
 
-import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmsInterface
+import com.andersen.internship.filmsapp.mvp.contracts.main.BaseViewInterface
+import com.andersen.internship.filmsapp.mvp.contracts.main.ViewListFilms
 import com.andersen.internship.filmsapp.mvp.models.ModelFilmsRepository
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
@@ -11,7 +12,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
-class FilmsPresenter @Inject constructor(private val modelFilmsRepository: ModelFilmsRepository): MvpPresenter<ViewFilmsInterface>() {
+class FilmsPresenter @Inject constructor(private val modelFilmsRepository: ModelFilmsRepository): MvpPresenter<ViewListFilms>() {
 
     private var compositeDisposable = CompositeDisposable()
 
@@ -25,6 +26,7 @@ class FilmsPresenter @Inject constructor(private val modelFilmsRepository: Model
     private fun downloadList(){
         viewState.showLoading()
         compositeDisposable = CompositeDisposable()
+
 
         val disposable = modelFilmsRepository
             .loadFilms()
