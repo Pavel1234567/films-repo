@@ -24,10 +24,8 @@ class FilmsPresenter @Inject constructor(private val modelFilmsRepository: Model
 
     private fun downloadList(){
         viewState.showLoading()
-        if (compositeDisposable.size() > 0) {
-            compositeDisposable.dispose()
-            compositeDisposable = CompositeDisposable()
-        }
+        compositeDisposable = CompositeDisposable()
+
         val disposable = modelFilmsRepository
             .loadFilms()
             .subscribeOn(Schedulers.io())
@@ -41,5 +39,10 @@ class FilmsPresenter @Inject constructor(private val modelFilmsRepository: Model
                 {viewState.hideLoading()})
 
         compositeDisposable.add(disposable)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.dispose()
     }
 }
