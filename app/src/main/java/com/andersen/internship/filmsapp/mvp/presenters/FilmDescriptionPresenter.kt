@@ -24,7 +24,6 @@ class FilmDescriptionPresenter @Inject constructor(
     }
 
     private fun downloadDescription(){
-        viewState.showLoading()
         compositeDisposable = CompositeDisposable()
 
         val disposable = modelFilmsRepository
@@ -34,12 +33,9 @@ class FilmDescriptionPresenter @Inject constructor(
                 .subscribe(
                         { list ->
                             val description = list.films.single { it.id == selectedItemId }
-                            viewState.showDescription(description) },
-                        { e ->
-                            viewState.hideLoading()
-                            e.message?.let { viewState.showError(it) }
-                        },
-                        {viewState.hideLoading()})
+                            viewState.showDescription(description)
+                        }
+                )
 
         compositeDisposable.add(disposable)
     }

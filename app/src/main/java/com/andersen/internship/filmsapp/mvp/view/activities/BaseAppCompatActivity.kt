@@ -7,7 +7,7 @@ import com.arellomobile.mvp.MvpAppCompatActivity
 import kotlinx.android.synthetic.main.toolbar.*
 import timber.log.Timber
 
-abstract class BaseAppCompatActivity: MvpAppCompatActivity(), BaseViewInterface {
+abstract class BaseAppCompatActivity: MvpAppCompatActivity() {
 
     protected fun onCreate(savedInstanceState: Bundle?, layoutId: Int){
 
@@ -17,8 +17,4 @@ abstract class BaseAppCompatActivity: MvpAppCompatActivity(), BaseViewInterface 
 
     }
 
-    override fun showError(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-        Timber.tag("myLogs").d(message)
-    }
 }

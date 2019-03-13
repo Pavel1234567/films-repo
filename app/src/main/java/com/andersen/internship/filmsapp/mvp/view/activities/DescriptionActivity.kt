@@ -24,14 +24,6 @@ class DescriptionActivity : BaseAppCompatActivity(), ViewFilmDescription {
     @ProvidePresenter
     fun providePresenter() = filmDescriptionPresenter
 
-    override fun showLoading() {
-        //TODO: To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun hideLoading() {
-        //TODO To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun showDescription(film: Film) {
 
         //TODO список без скобок

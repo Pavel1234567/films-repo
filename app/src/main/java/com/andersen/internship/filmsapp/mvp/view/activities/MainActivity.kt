@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.Toast
 import com.andersen.internship.filmsapp.*
 import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
@@ -77,4 +78,10 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
         recyclerView.visibility = View.VISIBLE
         adapter.listFilms = list
     }
+
+    override fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        Timber.tag("myLogs").d(message)
+    }
+
 }
