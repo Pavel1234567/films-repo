@@ -22,10 +22,6 @@ class App: Application() {
         if (android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.KITKAT) {
             solveSSLHandHandshakeError()
         }
-
-        val model = appComponent.getModel()
-
-        Timber.tag("myLog").d("App model ${model.hashCode()}")
     }
 
     private fun solveSSLHandHandshakeError(){

@@ -14,9 +14,6 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-    @Singleton
-    @Provides
-    fun modelForFilms(filmsApi: FilmsApi): ModelFilmsRepository = ModelFilmsRepository(filmsApi)
 
     @Singleton
     @Provides
