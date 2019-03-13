@@ -9,15 +9,13 @@ import javax.inject.Inject
 
 class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi): ModelFilmsInterface {
 
+    private var listFilms: ListFilms? = null
+    
     override fun loadFilms(): Observable<ListFilms> {
         Timber.tag("myLogs").d("loadFilms")
         if (listFilms == null){
             return filmsApi.getList().doOnNext{list -> listFilms = list}
         }
         else return Observable.just(listFilms)
-    }
-
-    companion object {
-        var listFilms: ListFilms? = null
     }
 }
