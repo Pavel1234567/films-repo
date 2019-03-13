@@ -41,10 +41,10 @@ class DescriptionActivity : BaseAppCompatActivity(), ViewFilmDescription {
                 .into(imageView)
         countryTextView.setText(film.country.toString())
 
-        titleTextView.setText(film.title)
-        yearTextView.setText("${film.year}")
-        genreTextView.setText(film.genre.toString())
-        descriptionTextView.setText(film.description)
+        titleTextView.text = film.title
+        yearTextView.text = "${film.year}"
+        genreTextView.text = film.genre.toString()
+        descriptionTextView.text = film.description
     }
 
     @SuppressLint("MissingSuperCall")
