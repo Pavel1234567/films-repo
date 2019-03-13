@@ -55,7 +55,7 @@ class MainActivity : BaseAppCompatActivity() {
         val gridLayoutManager = GridLayoutManager(this, spanCount)
 
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = gridLayoutManager as RecyclerView.LayoutManager?
+        recyclerView.layoutManager = gridLayoutManager
     }
 
     override fun showLoading() {

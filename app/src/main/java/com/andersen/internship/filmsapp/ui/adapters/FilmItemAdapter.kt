@@ -35,7 +35,7 @@ class FilmItemAdapter(private val widthAndHeightOfImageView: Pair<Int, Int>) : R
         imageView.layoutParams.height = widthAndHeightOfImageView.second
 
         val film = listFilms[p1]
-        filmsHolder.titleTextView.setText(film.title)
+        filmsHolder.titleTextView.text = film.title
         Picasso.get()
             .load(film.image)
             .into(imageView)

@@ -13,6 +13,6 @@ class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi): 
 
         Timber.tag("myLogs").d("loadFilms")
 
-        return filmsApi.getList()
+        return filmsApi.getFilmsList()
     }
 }

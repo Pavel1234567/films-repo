@@ -18,14 +18,14 @@ class SizeCalculator @Inject constructor(private val activity: Activity){
         val spanCount = calculateSpanCount()
 
         val widthImage = (calculateWidthScreen() - 2 * (recyclerViewMargin - spanCount * (linearLayoutPadding - cardViewLayoutMargin)))/spanCount
-        val heightImage = widthImage * 3/2
+        val heightImage = widthImage * HEIGHT_WIDTH_RELATION
 
-        return Pair(widthImage, heightImage)
+        return Pair(widthImage, heightImage.roundToInt())
     }
 
     fun calculateSpanCount(): Int{
 
-        var spanCount: Int = calculateWidthScreen()/ IMAGET_VIEW_APPROXIMATE_WIDTH
+        var spanCount: Int = calculateWidthScreen()/ IMAGE_VIEW_APPROXIMATE_WIDTH
         if(spanCount < MIN_SPAN_COUNT) spanCount = MIN_SPAN_COUNT
         return spanCount
     }
@@ -41,9 +41,9 @@ class SizeCalculator @Inject constructor(private val activity: Activity){
     }
 
     companion object {
-        private val IMAGET_VIEW_APPROXIMATE_WIDTH = 256
+        private val IMAGE_VIEW_APPROXIMATE_WIDTH = 256
         private val MIN_SPAN_COUNT = 2
-        private val HEIGHT_WIDTH_RELATION = 3/2
+        private val HEIGHT_WIDTH_RELATION = 1.5
 
     }
 }
