@@ -31,11 +31,11 @@ class DescriptionActivity : BaseAppCompatActivity(), ViewFilmDescription {
         Picasso.get()
                 .load(film.image)
                 .into(imageView)
-        countryTextView.setText(film.country.toString())
 
+        countryTextView.text = film.country.joinToString()
         titleTextView.text = film.title
         yearTextView.text = "${film.year}"
-        genreTextView.text = film.genre.toString()
+        genreTextView.text = film.genre.joinToString()
         descriptionTextView.text = film.description
     }
 
