@@ -3,11 +3,9 @@ package com.andersen.internship.filmsapp.mvp.view.activities
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
-import com.andersen.internship.filmsapp.*
-import com.andersen.internship.filmsapp.di.components.DaggerAppComponent
-import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
+import com.andersen.internship.filmsapp.R
+import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
 import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
 import com.andersen.internship.filmsapp.pojo.films.Film
@@ -15,7 +13,6 @@ import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.content_main.*
-import okhttp3.internal.Internal.instance
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -29,6 +26,7 @@ class MainActivity : BaseAppCompatActivity() {
     @ProvidePresenter
     fun providePresenter() = filmsPresenter
 
+    @Inject
     lateinit var sizeCalculator: SizeCalculator
 
     @Inject
@@ -36,12 +34,10 @@ class MainActivity : BaseAppCompatActivity() {
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
-        val d = DaggerAppComponent
-            .create()
-            .baseActivityComponent(BaseActivityModule(this))
-            .mainActivityComponent(MainActivityModule(this))
-        d.injectMainActivity(this)
 
+        baseActivityComponent
+            .mainActivityComponent(MainActivityModule(this))
+            .injectMainActivity(this)
 
         onCreate(savedInstanceState, R.layout.activity_main)
 

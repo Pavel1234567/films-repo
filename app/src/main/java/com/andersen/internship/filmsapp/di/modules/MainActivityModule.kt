@@ -13,7 +13,6 @@ import dagger.Provides
 @Module
 class MainActivityModule(private val mainActivity: MainActivity) {
 
-
     @MainActivityScope
     @Provides
     fun filmItemAdapter(sizeCalculator: SizeCalculator): FilmItemAdapter =
@@ -23,5 +22,4 @@ class MainActivityModule(private val mainActivity: MainActivity) {
     @Provides
     fun provideMainPresenter(modelFilmsRepository: ModelFilmsRepository): FilmsPresenter =
         FilmsPresenter(modelFilmsRepository)
-
 }
