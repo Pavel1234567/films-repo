@@ -1,5 +1,6 @@
 package com.andersen.internship.filmsapp.di.modules
 
+import android.content.Context
 import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.di.scopes.BaseActivityScope
 import com.andersen.internship.filmsapp.get
@@ -8,10 +9,9 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class BaseActivityModule(private val baseAppCompatActivity: BaseAppCompatActivity) {
+class BaseActivityModule() {
 
     @BaseActivityScope
     @Provides
-    fun sizeCalculator() = SizeCalculator(baseAppCompatActivity)
-
+    fun sizeCalculator(context: Context) = SizeCalculator(context)
 }

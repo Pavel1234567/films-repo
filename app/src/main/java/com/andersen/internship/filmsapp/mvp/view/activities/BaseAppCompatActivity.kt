@@ -16,7 +16,7 @@ abstract class BaseAppCompatActivity : MvpAppCompatActivity(), ViewFilmsInterfac
     protected val baseActivityComponent by lazy {
         get(this)
             .appComponent
-            .baseActivityComponent(BaseActivityModule(this))
+            .baseActivityComponent(BaseActivityModule())
     }
 
     protected fun onCreate(savedInstanceState: Bundle?, layoutId: Int) {
