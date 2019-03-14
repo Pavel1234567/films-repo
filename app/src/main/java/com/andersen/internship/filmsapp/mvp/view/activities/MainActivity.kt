@@ -35,6 +35,7 @@ class MainActivity : BaseAppCompatActivity() {
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         val mainActivityComponent = DaggerMainActivityComponent
             .builder()
             .mainActivityModule(MainActivityModule(this))

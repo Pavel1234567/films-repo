@@ -8,7 +8,6 @@ import com.andersen.internship.filmsapp.mvp.view.activities.MainActivity
 import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
 
 @Module
 class MainActivityModule(private val mainActivity: MainActivity) {
