@@ -2,12 +2,15 @@ package com.andersen.internship.filmsapp.di.components
 
 import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
-import com.andersen.internship.filmsapp.di.scopes.ActivityScope
-import dagger.Component
+import com.andersen.internship.filmsapp.di.modules.MainActivityModule
+import com.andersen.internship.filmsapp.di.scopes.BaseActivityScope
+import com.andersen.internship.filmsapp.mvp.view.activities.BaseAppCompatActivity
+import dagger.Subcomponent
 
-@Component(modules = arrayOf(BaseActivityModule::class))
-@ActivityScope
+@Subcomponent(modules = arrayOf(BaseActivityModule::class))
+@BaseActivityScope
 interface BaseActivityComponent {
 
-    fun sizeCalculator(): SizeCalculator
+    fun injectBaseActivity(baseAppCompatActivity: BaseAppCompatActivity)
+    fun mainActivityComponent(mainActivityModule: MainActivityModule): MainActivityComponent
 }

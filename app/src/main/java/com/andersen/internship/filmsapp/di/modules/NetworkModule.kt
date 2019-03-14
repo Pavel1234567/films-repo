@@ -14,7 +14,6 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-
     @Singleton
     @Provides
     fun filmsApi(retrofit: Retrofit) = retrofit.create(FilmsApi::class.java)

@@ -1,5 +1,6 @@
 package com.andersen.internship.filmsapp.di.components
 
+import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
 import com.andersen.internship.filmsapp.di.modules.NetworkModule
 import com.andersen.internship.filmsapp.mvp.models.ModelFilmsRepository
 import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
@@ -10,5 +11,5 @@ import javax.inject.Singleton
 @Singleton
 interface AppComponent {
 
-    fun getModel(): ModelFilmsRepository
+    fun baseActivityComponent(baseActivityModule: BaseActivityModule): BaseActivityComponent
 }

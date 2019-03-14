@@ -1,12 +1,13 @@
 package com.andersen.internship.filmsapp.di.components
 
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
-import com.andersen.internship.filmsapp.di.scopes.ActivityScope
+import com.andersen.internship.filmsapp.di.scopes.BaseActivityScope
+import com.andersen.internship.filmsapp.di.scopes.MainActivityScope
 import com.andersen.internship.filmsapp.mvp.view.activities.MainActivity
-import dagger.Component
+import dagger.Subcomponent
 
-@ActivityScope
-@Component(modules = arrayOf(MainActivityModule::class), dependencies = arrayOf(AppComponent::class))
+@MainActivityScope
+@Subcomponent(modules = arrayOf(MainActivityModule::class))
 interface MainActivityComponent {
 
     fun injectMainActivity(mainActivity: MainActivity)
