@@ -1,6 +1,5 @@
 package com.andersen.internship.filmsapp.di.components
 
-import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
 import com.andersen.internship.filmsapp.di.scopes.BaseActivityScope

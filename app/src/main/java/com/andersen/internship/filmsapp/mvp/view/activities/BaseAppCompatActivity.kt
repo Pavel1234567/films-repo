@@ -1,9 +1,7 @@
 package com.andersen.internship.filmsapp.mvp.view.activities
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
-import com.andersen.internship.filmsapp.di.components.BaseActivityComponent
 import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
 import com.andersen.internship.filmsapp.get
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmsInterface

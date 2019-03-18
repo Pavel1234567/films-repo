@@ -3,13 +3,8 @@ package com.andersen.internship.filmsapp
 import android.app.Activity
 import android.app.Application
 import android.os.Build
-import com.andersen.internship.filmsapp.di.components.BaseActivityComponent
 import com.andersen.internship.filmsapp.di.components.DaggerAppComponent
-import com.andersen.internship.filmsapp.di.components.MainActivityComponent
 import com.andersen.internship.filmsapp.di.modules.AppModule
-import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
-import com.andersen.internship.filmsapp.mvp.view.activities.BaseAppCompatActivity
-import com.andersen.internship.filmsapp.mvp.view.activities.MainActivity
 import com.google.android.gms.security.ProviderInstaller
 import timber.log.Timber
 import javax.net.ssl.SSLContext

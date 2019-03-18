@@ -1,8 +1,8 @@
 package com.andersen.internship.filmsapp.network.api
 
 import com.andersen.internship.filmsapp.pojo.films.ListMedia
-import retrofit2.http.GET
 import io.reactivex.Observable
+import retrofit2.http.GET
 
 
 interface FilmsApi {
