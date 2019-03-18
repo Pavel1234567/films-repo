@@ -1,25 +1,18 @@
 package com.andersen.internship.filmsapp
 
-import android.content.Context
-import android.graphics.Point
+import android.content.res.Resources
 import javax.inject.Inject
 import kotlin.math.roundToInt
 
-class SizeCalculator @Inject constructor(private val context: Context){
+class SizeCalculator @Inject constructor(private val resources: Resources){
 
-    var widthScreen: Int = 0
-        get() {
-        if(field == 0){
-            field = context.resources.displayMetrics.widthPixels
-        }
-        return field
-    }
+    var widthScreen: Int = resources.displayMetrics.widthPixels
 
     fun calculateWidthAndHeightOfView(): Pair<Int, Int>{
 
-        val recyclerViewMargin = context.resources.getDimensionPixelSize(R.dimen.recycler_view_margin)
-        val linearLayoutPadding = context.resources.getDimensionPixelSize(R.dimen.linear_layout_padding)
-        val cardViewLayoutMargin = context.resources.getDimensionPixelSize(R.dimen.card_view_layout_margin)
+        val recyclerViewMargin = resources.getDimensionPixelSize(R.dimen.recycler_view_margin)
+        val linearLayoutPadding = resources.getDimensionPixelSize(R.dimen.linear_layout_padding)
+        val cardViewLayoutMargin = resources.getDimensionPixelSize(R.dimen.card_view_layout_margin)
         val spanCount = calculateSpanCount()
 
         val widthImage = (widthScreen - 2 * (recyclerViewMargin - spanCount * (linearLayoutPadding - cardViewLayoutMargin)))/spanCount

@@ -9,9 +9,9 @@ import dagger.Module
 import dagger.Provides
 
 @Module
-class BaseActivityModule() {
+class BaseActivityModule {
 
     @BaseActivityScope
     @Provides
-    fun sizeCalculator(context: Context) = SizeCalculator(context)
+    fun sizeCalculator(context: Context) = SizeCalculator(context.resources)
 }
