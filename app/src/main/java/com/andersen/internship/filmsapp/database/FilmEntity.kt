@@ -1,12 +1,11 @@
 package com.andersen.internship.filmsapp.database
 
+import android.arch.persistence.room.Embedded
 import android.arch.persistence.room.Entity
-import com.andersen.internship.filmsapp.pojo.films.Film
 import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.TypeConverters
+import com.andersen.internship.filmsapp.pojo.films.Film
 
 @Entity
-data class FilmEntity(val film: Film){
-
-    @PrimaryKey
-    var id: Int = 0
-}
+@TypeConverters(ListStringsConverter::class)
+class FilmEntity(@field:PrimaryKey(autoGenerate = true) var idEntity: Int, @Embedded var film: Film)

@@ -1,5 +1,6 @@
 package com.andersen.internship.filmsapp.mvp.models
 
+import com.andersen.internship.filmsapp.database.DaoFilms
 import com.andersen.internship.filmsapp.mvp.contracts.main.ModelFilmsInterface
 import com.andersen.internship.filmsapp.network.api.FilmsApi
 import com.andersen.internship.filmsapp.pojo.films.ListFilms
@@ -7,7 +8,7 @@ import io.reactivex.Observable
 import timber.log.Timber
 import javax.inject.Inject
 
-class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi): ModelFilmsInterface {
+class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi, daoFilms: DaoFilms): ModelFilmsInterface {
 
     private var listFilms: ListFilms? = null
 
