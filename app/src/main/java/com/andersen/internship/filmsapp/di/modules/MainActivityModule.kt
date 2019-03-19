@@ -1,7 +1,6 @@
 package com.andersen.internship.filmsapp.di.modules
 
 import android.content.Intent
-import android.widget.Toast
 import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.di.scopes.MainActivityScope
 import com.andersen.internship.filmsapp.mvp.models.ModelFilmsRepository
@@ -14,14 +13,6 @@ import dagger.Provides
 
 @Module
 class MainActivityModule(private val mainActivity: MainActivity) {
-
-    @MainActivityScope
-    @Provides
-    fun sizeCalculator() = SizeCalculator(mainActivity)
-
-    @MainActivityScope
-    @Provides
-    fun widthAndHeightOfImageView(sizeCalculator: SizeCalculator) = sizeCalculator.calculateWidthAndHeightOfView()
 
     @MainActivityScope
     @Provides
@@ -44,4 +35,5 @@ class MainActivityModule(private val mainActivity: MainActivity) {
     companion object {
         val ITEM_POSITION = "ITEM_POSITION"
     }
+
 }

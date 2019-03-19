@@ -1,50 +1,38 @@
 package com.andersen.internship.filmsapp
 
-import android.app.Activity
-import android.graphics.Point
+import android.content.res.Resources
 import javax.inject.Inject
 import kotlin.math.roundToInt
 
-class SizeCalculator @Inject constructor(private val activity: Activity){
+class SizeCalculator @Inject constructor(private val resources: Resources){
 
-    private var widthScreen: Int = 0
-
+    var widthScreen: Int = resources.displayMetrics.widthPixels
 
     fun calculateWidthAndHeightOfView(): Pair<Int, Int>{
 
-        val recyclerViewMargin = activity.resources.getDimensionPixelSize(R.dimen.recycler_view_margin)
-        val linearLayoutPadding = activity.resources.getDimensionPixelSize(R.dimen.linear_layout_padding)
-        val cardViewLayoutMargin = activity.resources.getDimensionPixelSize(R.dimen.card_view_layout_margin)
+        val recyclerViewMargin = resources.getDimensionPixelSize(R.dimen.recycler_view_margin)
+        val linearLayoutPadding = resources.getDimensionPixelSize(R.dimen.linear_layout_padding)
+        val cardViewLayoutMargin = resources.getDimensionPixelSize(R.dimen.card_view_layout_margin)
         val spanCount = calculateSpanCount()
 
-        val widthImage = (calculateWidthScreen() - 2 * (recyclerViewMargin - spanCount * (linearLayoutPadding - cardViewLayoutMargin)))/spanCount
-        val heightImage = widthImage * 3/2
+        val widthImage = (widthScreen - 2 * (recyclerViewMargin - spanCount * (linearLayoutPadding - cardViewLayoutMargin)))/spanCount
+        val heightImage = widthImage * HEIGHT_WIDTH_RELATION
 
-        return Pair(widthImage, heightImage)
+        return Pair(widthImage, heightImage.roundToInt())
     }
 
     fun calculateSpanCount(): Int{
 
-        var spanCount: Int = calculateWidthScreen()/ IMAGET_VIEW_APPROXIMATE_WIDTH
+        var spanCount: Int = widthScreen/ IMAGE_VIEW_APPROXIMATE_WIDTH
         if(spanCount < MIN_SPAN_COUNT) spanCount = MIN_SPAN_COUNT
         return spanCount
     }
 
-    fun calculateWidthScreen():Int{
-        if (widthScreen == 0) {
-            val display = activity.windowManager.defaultDisplay
-            val size = Point()
-            display.getSize(size)
-            widthScreen = size.x
-        }
-        return widthScreen
-    }
-
     companion object {
-        private val IMAGET_VIEW_APPROXIMATE_WIDTH = 256
-        private val MIN_SPAN_COUNT = 2
-        private val HEIGHT_WIDTH_RELATION = 3/2
 
+        private val IMAGE_VIEW_APPROXIMATE_WIDTH = 256
+        private val MIN_SPAN_COUNT = 2
+        private val HEIGHT_WIDTH_RELATION = 1.5
     }
 }
 

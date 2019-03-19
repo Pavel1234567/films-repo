@@ -3,11 +3,10 @@ package com.andersen.internship.filmsapp.mvp.view.activities
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.Toast
-import com.andersen.internship.filmsapp.*
-import com.andersen.internship.filmsapp.di.components.DaggerMainActivityComponent
+import com.andersen.internship.filmsapp.R
+import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewListFilms
 import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
@@ -37,13 +36,10 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
 
     @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
-        val mainActivityComponent = DaggerMainActivityComponent
-            .builder()
-            .mainActivityModule(MainActivityModule(this))
-            .appComponent(App.get(this).appComponent)
-            .build()
 
-        mainActivityComponent.injectMainActivity(this)
+        baseActivityComponent
+            .mainActivityComponent(MainActivityModule(this))
+            .injectMainActivity(this)
 
         onCreate(savedInstanceState, R.layout.activity_main)
 
@@ -57,7 +53,7 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
         val gridLayoutManager = GridLayoutManager(this, spanCount)
 
         recyclerView.adapter = adapter
-        recyclerView.layoutManager = gridLayoutManager as RecyclerView.LayoutManager?
+        recyclerView.layoutManager = gridLayoutManager
     }
 
     override fun showLoading() {

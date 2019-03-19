@@ -36,7 +36,7 @@ class FilmItemAdapter @Inject constructor(
         imageView.layoutParams.height = widthAndHeightOfImageView.second
 
         val film = listFilms[position]
-        filmsHolder.titleTextView.setText(film.title)
+        filmsHolder.titleTextView.text = film.title
         Picasso.get()
             .load(film.image)
             .into(imageView)

@@ -1,7 +1,5 @@
 package com.andersen.internship.filmsapp.mvp.presenters
 
-import android.view.View
-import com.andersen.internship.filmsapp.mvp.contracts.main.BaseViewInterface
 import com.arellomobile.mvp.MvpPresenter
 import com.arellomobile.mvp.MvpView
 import io.reactivex.disposables.CompositeDisposable

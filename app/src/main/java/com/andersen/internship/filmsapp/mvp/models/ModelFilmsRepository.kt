@@ -10,12 +10,17 @@ import javax.inject.Inject
 class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi): ModelFilmsInterface {
 
     private var listFilms: ListFilms? = null
-    
+
     override fun loadFilms(): Observable<ListFilms> {
-        Timber.tag("myLogs").d("loadFilms")
         if (listFilms == null){
+            Timber.tag("myLogs").d("listFilms == null")
+
             return filmsApi.getList().doOnNext{list -> listFilms = list}
         }
-        else return Observable.just(listFilms)
+        else{
+            Timber.tag("myLogs").d("Observable.just")
+
+            return Observable.just(listFilms)
+        }
     }
 }

@@ -4,9 +4,10 @@ import com.andersen.internship.filmsapp.di.modules.MainActivityModule
 import com.andersen.internship.filmsapp.di.scopes.MainActivityScope
 import com.andersen.internship.filmsapp.mvp.view.activities.MainActivity
 import dagger.Component
+import dagger.Subcomponent
 
 @MainActivityScope
-@Component(modules = arrayOf(MainActivityModule::class), dependencies = arrayOf(AppComponent::class))
+@Subcomponent(modules = arrayOf(MainActivityModule::class))
 interface MainActivityComponent {
 
     fun injectMainActivity(mainActivity: MainActivity)
