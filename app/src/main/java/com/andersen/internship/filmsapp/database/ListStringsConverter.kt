@@ -1,6 +1,7 @@
 package com.andersen.internship.filmsapp.database
 
 import android.arch.persistence.room.TypeConverter
+import io.reactivex.Flowable
 
 class ListStringsConverter {
 
@@ -8,5 +9,5 @@ class ListStringsConverter {
     fun toStr(list: MutableList<String>) = list.joinToString(separator = ",")
 
     @TypeConverter
-    fun toList(string: String): MutableList<String> = string.split(",").toMutableList()
+    fun toList(string: String) = string.split(",").toMutableList()
 }

@@ -8,4 +8,7 @@ import com.andersen.internship.filmsapp.pojo.films.Film
 
 @Entity
 @TypeConverters(ListStringsConverter::class)
-class FilmEntity(@field:PrimaryKey(autoGenerate = true) var idEntity: Int, @Embedded var film: Film)
+class FilmEntity( @Embedded var film: Film){
+
+    @field:PrimaryKey(autoGenerate = true) var idEntity: Int = 0
+}

@@ -3,7 +3,6 @@ package com.andersen.internship.filmsapp.database
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.Query
-import com.andersen.internship.filmsapp.pojo.films.Film
 import io.reactivex.Flowable
 
 @Dao
@@ -13,7 +12,10 @@ interface DaoFilms {
     fun getList() : Flowable<List<FilmEntity>>
 
     @Query("SELECT * FROM filmEntity WHERE id = :id")
-    fun getFilmById(id: Int): Flowable<Film>
+    fun getFilmById(id: Int): Flowable<FilmEntity>
+
+    @Query("SELECT count(*) FROM filmentity")
+    fun tableSize():Flowable<Int>
 
     @Insert
     fun insert(list: List<FilmEntity>)

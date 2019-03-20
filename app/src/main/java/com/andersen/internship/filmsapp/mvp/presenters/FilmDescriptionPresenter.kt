@@ -18,7 +18,6 @@ class FilmDescriptionPresenter @Inject constructor(
     override fun onFirstViewAttach() {
 
         super.onFirstViewAttach()
-        Timber.tag("myLog").d("onFirstViewAttach")
         downloadDescription()
     }
 
