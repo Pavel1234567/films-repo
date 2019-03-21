@@ -5,14 +5,7 @@ import com.andersen.internship.filmsapp.database.FilmEntity
 import com.andersen.internship.filmsapp.mvp.contracts.main.ModelFilmsInterface
 import com.andersen.internship.filmsapp.network.api.FilmsApi
 import com.andersen.internship.filmsapp.pojo.films.Film
-import com.andersen.internship.filmsapp.pojo.films.ListFilms
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
-import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.schedulers.Schedulers
-import org.reactivestreams.Publisher
-import timber.log.Timber
 import javax.inject.Inject
 
 class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi, private val daoFilms: DaoFilms) :
@@ -23,20 +16,19 @@ class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi, p
         .getFilmById(id)
         .map { it.film }
 
-    override fun loadFilms(): Single<ListFilms> = daoFilms
+    override fun loadFilms(): Single<List<Film>> = daoFilms
         .getList()
         .flatMap { list ->
             if (list.isEmpty()) {
                 return@flatMap filmsApi
                     .getList()
+                    .map { it.films }
                     .doOnSuccess {
-                        val listForDB = it.films.map {
-                            FilmEntity(it)
-                        }
+                        val listForDB = it.map { FilmEntity(it) }
                         daoFilms.insert(listForDB)
                     }
             } else {
-                return@flatMap Single.just(list).map { ListFilms(it.map { it.film }) }
+                return@flatMap Single.just(list).map { it.map { it.film } }
             }
         }
 }

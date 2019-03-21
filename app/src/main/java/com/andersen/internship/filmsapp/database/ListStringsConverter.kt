@@ -1,7 +1,6 @@
 package com.andersen.internship.filmsapp.database
 
 import android.arch.persistence.room.TypeConverter
-import io.reactivex.Flowable
 
 class ListStringsConverter {
 

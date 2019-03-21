@@ -28,9 +28,7 @@ class FilmDescriptionPresenter @Inject constructor(
                 .loadFilmById(selectedItemId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        { film -> viewState.showDescription(film) }
-                )
+                .subscribe { film -> viewState.showDescription(film) }
 
         compositeDisposable.add(disposable)
     }

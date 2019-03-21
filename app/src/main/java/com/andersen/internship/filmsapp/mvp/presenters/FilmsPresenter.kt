@@ -29,7 +29,7 @@ class FilmsPresenter @Inject constructor(private val modelFilmsInterface: ModelF
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { list ->
-                    val handledList: List<FilmDTO> = list.films.map { FilmDTO(it.id, it.title, it.image) }
+                    val handledList: List<FilmDTO> = list.map { FilmDTO(it.id, it.title, it.image) }
                     viewState.showFilms(handledList)
                     viewState.hideLoading()
                 },
