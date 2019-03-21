@@ -2,25 +2,23 @@ package com.andersen.internship.filmsapp.mvp.models
 
 import com.andersen.internship.filmsapp.mvp.contracts.main.ModelFilmsInterface
 import com.andersen.internship.filmsapp.network.api.FilmsApi
+import com.andersen.internship.filmsapp.pojo.films.Film
 import com.andersen.internship.filmsapp.pojo.films.ListFilms
-import io.reactivex.Observable
-import timber.log.Timber
+import io.reactivex.Single
 import javax.inject.Inject
 
 class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi): ModelFilmsInterface {
 
-    private var listFilms: ListFilms? = null
+    private var listFilms: List<Film>? = null
 
-    override fun loadFilms(): Observable<ListFilms> {
+    override fun loadFilms(): Single<List<Film>> {
         if (listFilms == null){
-            Timber.tag("myLogs").d("listFilms == null")
 
-            return filmsApi.getList().doOnNext{list -> listFilms = list}
+            return filmsApi.getFilmsList().map { it.films }.doOnSuccess{list -> listFilms = list}
         }
         else{
-            Timber.tag("myLogs").d("Observable.just")
 
-            return Observable.just(listFilms)
+            return Single.just(listFilms)
         }
     }
 }

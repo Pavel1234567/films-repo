@@ -7,7 +7,6 @@ import com.arellomobile.mvp.InjectViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -16,8 +15,6 @@ class FilmsPresenter @Inject constructor(private val modelFilmsInterface: ModelF
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        Timber.tag("myLog").d("onFirstViewAttach")
-
         downloadList()
     }
 
@@ -31,14 +28,14 @@ class FilmsPresenter @Inject constructor(private val modelFilmsInterface: ModelF
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
                 { list ->
-                    val handledList: List<FilmDTO> = list.films.map { FilmDTO(it.id, it.title, it.image) }
+                    val handledList: List<FilmDTO> = list.map { FilmDTO(it.id, it.title, it.image) }
                     viewState.showFilms(handledList)
+                    viewState.hideLoading()
                 },
                 { e ->
                     viewState.hideLoading()
                     e.message?.let { viewState.showError(it) }
-                },
-                {viewState.hideLoading()})
+                })
 
         compositeDisposable.add(disposable)
     }

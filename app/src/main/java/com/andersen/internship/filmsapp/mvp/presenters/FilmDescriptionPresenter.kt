@@ -31,7 +31,7 @@ class FilmDescriptionPresenter @Inject constructor(
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                         { list ->
-                            val description = list.films.single { it.id == selectedItemId }
+                            val description = list.single { it.id == selectedItemId }
                             viewState.showDescription(description)
                         }
                 )

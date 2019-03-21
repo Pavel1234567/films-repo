@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.andersen.internship.filmsapp.App
 import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
 import com.arellomobile.mvp.MvpAppCompatActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.toolbar.*
 
 abstract class BaseAppCompatActivity: MvpAppCompatActivity() {

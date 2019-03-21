@@ -1,9 +1,9 @@
 package com.andersen.internship.filmsapp.mvp.contracts.main
 
-import com.andersen.internship.filmsapp.pojo.films.ListFilms
-import io.reactivex.Observable
+import com.andersen.internship.filmsapp.pojo.films.Film
+import io.reactivex.Single
 
 interface ModelFilmsInterface {
 
-    fun loadFilms(): Observable<ListFilms>
+    fun loadFilms(): Single<List<Film>>
 }
