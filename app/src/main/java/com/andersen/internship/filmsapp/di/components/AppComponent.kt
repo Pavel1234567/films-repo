@@ -1,6 +1,9 @@
 package com.andersen.internship.filmsapp.di.components
 
-import com.andersen.internship.filmsapp.di.modules.*
+import com.andersen.internship.filmsapp.di.modules.AppModule
+import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
+import com.andersen.internship.filmsapp.di.modules.NetworkModule
+import com.andersen.internship.filmsapp.di.modules.RepositoryModule
 import dagger.Component
 import javax.inject.Singleton
 
