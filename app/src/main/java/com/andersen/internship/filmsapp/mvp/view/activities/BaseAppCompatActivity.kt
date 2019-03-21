@@ -1,6 +1,7 @@
 package com.andersen.internship.filmsapp.mvp.view.activities
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.Toast
 import com.andersen.internship.filmsapp.App
 import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
@@ -26,6 +27,5 @@ abstract class BaseAppCompatActivity : MvpAppCompatActivity(), ViewFilmsInterfac
 
     override fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
-        Timber.tag("myLogs").d(message)
     }
 }

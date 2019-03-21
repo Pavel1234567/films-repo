@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.item_films.view.*
 import javax.inject.Inject
 
 class FilmItemAdapter @Inject constructor(
-    private val widthAndHeightOfImageView: Pair<Int, Int>
+    private val widthAndHeightOfImageView: Pair<Int, Int>,
+    private val picasso: Picasso
 ) : RecyclerView.Adapter<FilmItemAdapter.FilmsHolder>() {
 
     var listFilms = emptyList<FilmDTO>()
@@ -36,7 +37,7 @@ class FilmItemAdapter @Inject constructor(
 
         val film = listFilms[position]
         filmsHolder.titleTextView.text = film.title
-        Picasso.get()
+        picasso
             .load(film.image)
             .into(imageView)
     }
