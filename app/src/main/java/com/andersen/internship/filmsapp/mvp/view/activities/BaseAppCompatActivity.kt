@@ -7,8 +7,10 @@ import com.andersen.internship.filmsapp.App
 import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmsInterface
 import com.arellomobile.mvp.MvpAppCompatActivity
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.toolbar.*
 import timber.log.Timber
+import javax.inject.Inject
 
 abstract class BaseAppCompatActivity : MvpAppCompatActivity(), ViewFilmsInterface {
 
@@ -28,4 +30,5 @@ abstract class BaseAppCompatActivity : MvpAppCompatActivity(), ViewFilmsInterfac
     override fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
+
 }

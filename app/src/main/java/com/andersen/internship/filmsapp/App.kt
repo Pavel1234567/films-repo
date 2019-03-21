@@ -3,14 +3,17 @@ package com.andersen.internship.filmsapp
 import android.app.Activity
 import android.app.Application
 import android.os.Build
+import android.widget.ImageView
 import com.andersen.internship.filmsapp.di.components.DaggerAppComponent
 import com.andersen.internship.filmsapp.di.modules.AppModule
 import com.google.android.gms.security.ProviderInstaller
+import com.squareup.picasso.Picasso
 import timber.log.Timber
+import javax.inject.Inject
 import javax.net.ssl.SSLContext
 
 class App: Application() {
-
+    
     val appComponent = DaggerAppComponent.builder().appModule(
         AppModule(this)).build()
 
@@ -30,7 +33,9 @@ class App: Application() {
         val sslContext = SSLContext.getInstance("TLSv1.2")
         sslContext.init(null, null, null)
     }
+
     companion object {
+
         fun get(activity: Activity): App {
             return activity.application as App
         }
