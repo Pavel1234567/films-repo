@@ -28,6 +28,8 @@ class NetworkModule {
     @Singleton
     @Provides
     fun gson() = GsonBuilder().create()
-}
 
-private val BASE_URL = "https://gist.github.com/giffell/"
+    companion object {
+        private val BASE_URL = "https://gist.github.com/giffell/d95a42738dd91feefb28d9947f8d4fff/raw/3bbb3933cdfc1513e602dbffc83bbc401236f71f/"
+    }
+}

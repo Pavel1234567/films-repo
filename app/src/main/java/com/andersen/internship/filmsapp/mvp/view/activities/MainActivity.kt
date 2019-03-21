@@ -8,12 +8,11 @@ import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
 import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
-import com.andersen.internship.filmsapp.pojo.films.Film
+import com.andersen.internship.filmsapp.pojo.films.FilmDTO
 import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.content_main.*
-import timber.log.Timber
 import javax.inject.Inject
 
 
@@ -42,7 +41,6 @@ class MainActivity : BaseAppCompatActivity() {
         onCreate(savedInstanceState, R.layout.activity_main)
 
         initRecyclerView()
-        Timber.tag("myLogs").d("MainActivity filmsPresenter ${filmsPresenter.hashCode()}")
     }
 
     private fun initRecyclerView() {
@@ -55,20 +53,15 @@ class MainActivity : BaseAppCompatActivity() {
     }
 
     override fun showLoading() {
-
         recyclerView.visibility = View.GONE
         progressbar.visibility = View.VISIBLE
-        Timber.tag("myLogs").d("showLoading")
     }
 
     override fun hideLoading() {
         progressbar.visibility = View.GONE
-        Timber.tag("myLogs").d("hideLoading")
     }
 
-    override fun showFilms(list: List<Film>) {
-
-        Timber.tag("myLogs").d("showFilms")
+    override fun showFilms(list: List<FilmDTO>) {
         recyclerView.visibility = View.VISIBLE
         adapter.listFilms = list
     }

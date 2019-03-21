@@ -14,11 +14,6 @@ class MainActivityModule(private val mainActivity: MainActivity) {
 
     @MainActivityScope
     @Provides
-    fun filmItemAdapter(sizeCalculator: SizeCalculator): FilmItemAdapter =
-         FilmItemAdapter(sizeCalculator.calculateWidthAndHeightOfView())
-
-    @MainActivityScope
-    @Provides
     fun provideMainPresenter(modelFilmsRepository: ModelFilmsRepository): FilmsPresenter =
         FilmsPresenter(modelFilmsRepository)
 }

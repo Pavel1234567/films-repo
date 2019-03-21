@@ -1,6 +1,6 @@
 package com.andersen.internship.filmsapp.pojo.films
 
-class ListMedia{
+class ListFilms{
 
     lateinit var films: List<Film>
 

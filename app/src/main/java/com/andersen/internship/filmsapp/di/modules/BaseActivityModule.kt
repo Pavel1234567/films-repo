@@ -12,4 +12,8 @@ class BaseActivityModule {
     @BaseActivityScope
     @Provides
     fun sizeCalculator(context: Context) = SizeCalculator(context.resources)
+
+    @BaseActivityScope
+    @Provides
+    fun calculateWidthAndHeightOfView(sizeCalculator: SizeCalculator) = sizeCalculator.calculateWidthAndHeightOfView()
 }

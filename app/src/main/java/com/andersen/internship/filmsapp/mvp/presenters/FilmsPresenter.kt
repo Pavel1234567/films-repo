@@ -2,6 +2,7 @@ package com.andersen.internship.filmsapp.mvp.presenters
 
 import com.andersen.internship.filmsapp.mvp.contracts.main.ModelFilmsInterface
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmsInterface
+import com.andersen.internship.filmsapp.pojo.films.FilmDTO
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -11,14 +12,10 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
-class FilmsPresenter @Inject constructor(private val modelFilmsInterface: ModelFilmsInterface): MvpPresenter<ViewFilmsInterface>() {
-
-    private var compositeDisposable = CompositeDisposable()
+class FilmsPresenter @Inject constructor(private val modelFilmsInterface: ModelFilmsInterface): BasePresenter<ViewFilmsInterface>() {
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        Timber.tag("myLog").d("onFirstViewAttach")
-
         downloadList()
     }
 
@@ -31,7 +28,10 @@ class FilmsPresenter @Inject constructor(private val modelFilmsInterface: ModelF
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(
-                { list -> viewState.showFilms(list.films) },
+                { list ->
+                    val handledList: List<FilmDTO> = list.films.map { FilmDTO(it.id, it.title, it.image) }
+                    viewState.showFilms(handledList)
+                },
                 { e ->
                     viewState.hideLoading()
                     e.message?.let { viewState.showError(it) }
@@ -39,10 +39,5 @@ class FilmsPresenter @Inject constructor(private val modelFilmsInterface: ModelF
                 {viewState.hideLoading()})
 
         compositeDisposable.add(disposable)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        compositeDisposable.dispose()
     }
 }
