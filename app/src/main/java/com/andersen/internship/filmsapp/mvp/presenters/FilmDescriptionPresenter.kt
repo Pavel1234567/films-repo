@@ -25,14 +25,11 @@ class FilmDescriptionPresenter @Inject constructor(
         compositeDisposable = CompositeDisposable()
 
         val disposable = modelFilmsInterface
-                .loadFilms()
+                .loadFilmById(selectedItemId)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
-                        { list ->
-                            val description = list.films.single { it.id == selectedItemId }
-                            viewState.showDescription(description)
-                        }
+                        { film -> viewState.showDescription(film) }
                 )
 
         compositeDisposable.add(disposable)

@@ -16,8 +16,6 @@ class FilmsPresenter @Inject constructor(private val modelFilmsInterface: ModelF
 
     override fun onFirstViewAttach() {
         super.onFirstViewAttach()
-        Timber.tag("myLog").d("onFirstViewAttach")
-
         downloadList()
     }
 
