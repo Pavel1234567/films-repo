@@ -33,12 +33,12 @@ class FilmsPresenter @Inject constructor(private val modelFilmsInterface: ModelF
                 { list ->
                     val handledList: List<FilmDTO> = list.films.map { FilmDTO(it.id, it.title, it.image) }
                     viewState.showFilms(handledList)
+                    viewState.hideLoading()
                 },
                 { e ->
                     viewState.hideLoading()
                     e.message?.let { viewState.showError(it) }
-                },
-                {viewState.hideLoading()})
+                })
 
         compositeDisposable.add(disposable)
     }

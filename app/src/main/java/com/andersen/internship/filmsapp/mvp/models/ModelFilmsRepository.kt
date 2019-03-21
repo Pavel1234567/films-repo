@@ -8,6 +8,7 @@ import com.andersen.internship.filmsapp.pojo.films.ListFilms
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Observable
+import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import org.reactivestreams.Publisher
 import timber.log.Timber
@@ -16,7 +17,7 @@ import javax.inject.Inject
 class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi, private val daoFilms: DaoFilms) :
     ModelFilmsInterface {
 
-    override fun loadFilms(): Flowable<ListFilms> {
+    override fun loadFilms(): Single<ListFilms> {
 
         return daoFilms
             .getList()
@@ -24,15 +25,12 @@ class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi, p
                 if (list.isEmpty()) {
                     return@flatMap filmsApi
                         .getList()
-                        .toFlowable(BackpressureStrategy.BUFFER)
-                        .doOnNext {
-                            val listForDB = it.films.map {
-                                FilmEntity(it)
-                            }
-                            daoFilms.insert(listForDB)
+                        .doOnSuccess {val listForDB = it.films.map {
+                            FilmEntity(it)
                         }
+                            daoFilms.insert(listForDB)  }
                 } else {
-                    return@flatMap Flowable.just(list).map { ListFilms(it.map { it.film }) }
+                    return@flatMap Single.just(list).map { ListFilms(it.map { it.film }) }
                 }
             }
 
