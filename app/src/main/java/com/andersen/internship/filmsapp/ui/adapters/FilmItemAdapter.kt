@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.andersen.internship.filmsapp.R
+import com.andersen.internship.filmsapp.loadImage
 import com.andersen.internship.filmsapp.pojo.films.FilmDTO
-import com.andersen.internship.filmsapp.setImage
 import kotlinx.android.synthetic.main.item_films.view.*
 import javax.inject.Inject
 
@@ -39,7 +39,7 @@ class FilmItemAdapter @Inject constructor(
         filmsHolder.titleTextView.text = film.title
 
         filmsHolder.cardView.setOnClickListener { onItemClickListener.onItemClick(film.id) }
-        imageView.setImage(film.image)
+        imageView.loadImage(film.image)
     }
 
     class FilmsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
