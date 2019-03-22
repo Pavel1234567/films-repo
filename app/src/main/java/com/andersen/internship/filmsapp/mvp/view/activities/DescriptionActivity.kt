@@ -2,17 +2,14 @@ package com.andersen.internship.filmsapp.mvp.view.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import com.andersen.internship.filmsapp.App
 import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.di.modules.DescriptionActivityModule
-import com.andersen.internship.filmsapp.di.modules.MainActivityModule
 import com.andersen.internship.filmsapp.loadImage
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmDescription
 import com.andersen.internship.filmsapp.mvp.presenters.FilmDescriptionPresenter
 import com.andersen.internship.filmsapp.pojo.films.Film
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_description.*
 import javax.inject.Inject
 

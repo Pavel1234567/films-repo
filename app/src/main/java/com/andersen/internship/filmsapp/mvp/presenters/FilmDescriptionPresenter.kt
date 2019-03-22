@@ -4,9 +4,7 @@ import com.andersen.internship.filmsapp.mvp.contracts.main.ModelFilmsInterface
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmDescription
 import com.arellomobile.mvp.InjectViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import timber.log.Timber
 import javax.inject.Inject
 
 @InjectViewState
@@ -22,7 +20,6 @@ class FilmDescriptionPresenter @Inject constructor(
     }
 
     private fun downloadDescription(){
-        compositeDisposable = CompositeDisposable()
 
         val disposable = modelFilmsInterface
                 .loadFilmById(selectedItemId)

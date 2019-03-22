@@ -5,7 +5,6 @@ import com.andersen.internship.filmsapp.database.FilmEntity
 import com.andersen.internship.filmsapp.mvp.contracts.main.ModelFilmsInterface
 import com.andersen.internship.filmsapp.network.api.FilmsApi
 import com.andersen.internship.filmsapp.pojo.films.Film
-import com.andersen.internship.filmsapp.pojo.films.ListFilms
 import io.reactivex.Single
 import javax.inject.Inject
 
