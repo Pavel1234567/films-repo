@@ -9,16 +9,13 @@ import javax.inject.Inject
 
 class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi): ModelFilmsInterface {
 
-    private var listFilms: List<Film>? = null
+    private var listFilms: List<Film> = listOf()
 
     override fun loadFilms(): Single<List<Film>> {
-        if (listFilms == null){
-
-            return filmsApi.getFilmsList().map { it.films }.doOnSuccess{list -> listFilms = list}
-        }
-        else{
-
-            return Single.just(listFilms)
+        return if (listFilms.isEmpty()){
+            filmsApi.getFilmsList().map { it.films }.doOnSuccess{list -> listFilms = list}
+        } else{
+            Single.just(listFilms)
         }
     }
 }
