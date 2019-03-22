@@ -5,7 +5,7 @@ import com.squareup.picasso.Picasso
 import javax.inject.Inject
 
 
-fun ImageView.setImage(uri: String){
+fun ImageView.loadImage(uri: String){
    Picasso.get().load(uri)
             .into(this)
 }
