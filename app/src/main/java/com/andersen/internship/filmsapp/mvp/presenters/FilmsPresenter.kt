@@ -20,7 +20,6 @@ class FilmsPresenter @Inject constructor(private val modelFilmsInterface: ModelF
 
     private fun downloadList(){
         viewState.showLoading()
-        compositeDisposable = CompositeDisposable()
 
         val disposable = modelFilmsInterface
             .loadFilms()
