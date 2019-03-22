@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.loadImage
 import com.andersen.internship.filmsapp.pojo.films.FilmDTO
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_films.view.*
 import javax.inject.Inject
 
@@ -38,9 +37,9 @@ class FilmItemAdapter @Inject constructor(
         val film = listFilms[position]
 
         filmsHolder.titleTextView.text = film.title
-        imageView.loadImage(film.image)
 
         filmsHolder.cardView.setOnClickListener { onItemClickListener.onItemClick(film.id) }
+        imageView.loadImage(film.image)
     }
 
     class FilmsHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

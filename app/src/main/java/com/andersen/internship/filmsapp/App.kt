@@ -11,7 +11,7 @@ import javax.net.ssl.SSLContext
 
 class App: Application() {
 
-    val appComponent = DaggerAppComponent.builder().appModule(
+        val appComponent = DaggerAppComponent.builder().appModule(
         AppModule(this)).build()
 
     override fun onCreate() {

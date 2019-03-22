@@ -8,8 +8,7 @@ import com.andersen.internship.filmsapp.mvp.contracts.main.BaseViewInterface
 import com.arellomobile.mvp.MvpAppCompatActivity
 import kotlinx.android.synthetic.main.toolbar.*
 
-
-abstract class BaseAppCompatActivity : MvpAppCompatActivity() {
+abstract class BaseAppCompatActivity: MvpAppCompatActivity() {
 
     protected val baseActivityComponent by lazy {
         App.get(this)
@@ -17,7 +16,7 @@ abstract class BaseAppCompatActivity : MvpAppCompatActivity() {
             .baseActivityComponent(BaseActivityModule())
     }
 
-    protected fun onCreate(savedInstanceState: Bundle?, layoutId: Int) {
+    protected fun onCreate(savedInstanceState: Bundle?, layoutId: Int){
 
         super.onCreate(savedInstanceState)
         setContentView(layoutId)
