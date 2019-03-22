@@ -1,3 +1,5 @@
 package com.andersen.internship.filmsapp.pojo.films
 
-data class ListFilms(val films: List<Film>)
+class ListFilms{
+    lateinit var films: List<Film>
+}

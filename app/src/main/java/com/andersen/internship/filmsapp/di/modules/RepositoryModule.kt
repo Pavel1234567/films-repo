@@ -14,7 +14,7 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun modelForFilms(filmsApi: FilmsApi, appDatabase: AppDatabase): ModelFilmsRepository{
-        return ModelFilmsRepository(filmsApi, appDatabase.filmDao())
-    }
+    fun modelForFilms(filmsApi: FilmsApi, appDatabase: AppDatabase): ModelFilmsRepository =
+        ModelFilmsRepository(filmsApi, appDatabase.filmDao())
+
 }

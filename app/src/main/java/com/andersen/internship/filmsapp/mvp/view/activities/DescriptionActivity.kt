@@ -6,6 +6,7 @@ import com.andersen.internship.filmsapp.App
 import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.di.modules.DescriptionActivityModule
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
+import com.andersen.internship.filmsapp.loadImage
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmDescription
 import com.andersen.internship.filmsapp.mvp.presenters.FilmDescriptionPresenter
 import com.andersen.internship.filmsapp.pojo.films.Film
@@ -26,10 +27,7 @@ class DescriptionActivity : BaseAppCompatActivity(), ViewFilmDescription {
 
     override fun showDescription(film: Film) {
 
-        Picasso.get()
-                .load(film.image)
-                .into(imageView)
-
+        imageView.loadImage(film.image)
         countryTextView.text = film.country.joinToString()
         titleTextView.text = film.title
         yearTextView.text = "${film.year}"

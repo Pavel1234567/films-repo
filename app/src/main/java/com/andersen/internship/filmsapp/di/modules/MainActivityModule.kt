@@ -1,7 +1,6 @@
 package com.andersen.internship.filmsapp.di.modules
 
 import android.content.Intent
-import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.di.scopes.MainActivityScope
 import com.andersen.internship.filmsapp.mvp.models.ModelFilmsRepository
 import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
@@ -35,5 +34,4 @@ class MainActivityModule(private val mainActivity: MainActivity) {
     companion object {
         val ITEM_POSITION = "ITEM_POSITION"
     }
-
 }

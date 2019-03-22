@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.andersen.internship.filmsapp.R
+import com.andersen.internship.filmsapp.loadImage
 import com.andersen.internship.filmsapp.pojo.films.FilmDTO
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_films.view.*
@@ -34,12 +35,10 @@ class FilmItemAdapter @Inject constructor(
         val imageView = filmsHolder.imageViewPoster
         imageView.layoutParams.width = widthAndHeightOfImageView.first
         imageView.layoutParams.height = widthAndHeightOfImageView.second
-
         val film = listFilms[position]
+
         filmsHolder.titleTextView.text = film.title
-        Picasso.get()
-            .load(film.image)
-            .into(imageView)
+        imageView.loadImage(film.image)
 
         filmsHolder.cardView.setOnClickListener { onItemClickListener.onItemClick(film.id) }
     }
@@ -53,6 +52,4 @@ class FilmItemAdapter @Inject constructor(
     interface OnItemClickListener{
         fun onItemClick(id: Int)
     }
-
 }
-

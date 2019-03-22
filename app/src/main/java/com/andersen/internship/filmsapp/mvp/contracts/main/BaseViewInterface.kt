@@ -14,5 +14,4 @@ interface BaseViewInterface : MvpView {
 
     @StateStrategyType(SkipStrategy::class)
     fun showError(message: String)
-
 }

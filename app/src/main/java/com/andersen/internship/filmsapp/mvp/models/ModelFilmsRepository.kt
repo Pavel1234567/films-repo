@@ -10,7 +10,6 @@ import javax.inject.Inject
 
 class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi, private val daoFilms: DaoFilms) :
 
-
     ModelFilmsInterface {
     override fun loadFilmById(id: Int): Single<Film> = daoFilms
         .getFilmById(id)
@@ -21,7 +20,7 @@ class ModelFilmsRepository @Inject constructor(private val filmsApi: FilmsApi, p
         .flatMap { list ->
             if (list.isEmpty()) {
                 return@flatMap filmsApi
-                    .getList()
+                    .getFilmsList()
                     .map { it.films }
                     .doOnSuccess {
                         val listForDB = it.map { FilmEntity(it) }
