@@ -1,16 +1,11 @@
 package com.andersen.internship.filmsapp.mvp.view.activities
 
-import android.os.Bundle
-import android.widget.ImageView
 import android.widget.Toast
 import com.andersen.internship.filmsapp.App
 import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewFilmsInterface
 import com.arellomobile.mvp.MvpAppCompatActivity
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.toolbar.*
-import timber.log.Timber
-import javax.inject.Inject
 
 abstract class BaseAppCompatActivity : MvpAppCompatActivity(), ViewFilmsInterface {
 
@@ -20,15 +15,12 @@ abstract class BaseAppCompatActivity : MvpAppCompatActivity(), ViewFilmsInterfac
             .baseActivityComponent(BaseActivityModule())
     }
 
-    protected fun onCreate(savedInstanceState: Bundle?, layoutId: Int) {
-
-        super.onCreate(savedInstanceState)
-        setContentView(layoutId)
+    override fun setContentView(layoutResID: Int) {
+        super.setContentView(layoutResID)
         setSupportActionBar(toolbar)
     }
 
     override fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
-
 }

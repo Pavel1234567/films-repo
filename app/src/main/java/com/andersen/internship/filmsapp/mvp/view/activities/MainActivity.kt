@@ -13,6 +13,7 @@ import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 
@@ -31,15 +32,14 @@ class MainActivity : BaseAppCompatActivity() {
     @Inject
     lateinit var adapter: FilmItemAdapter
 
-    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         baseActivityComponent
             .mainActivityComponent(MainActivityModule(this))
             .injectMainActivity(this)
 
-        onCreate(savedInstanceState, R.layout.activity_main)
-
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         initRecyclerView()
     }
 
