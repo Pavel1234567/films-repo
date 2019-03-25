@@ -5,7 +5,6 @@ import com.andersen.internship.filmsapp.mvp.contracts.main.ViewListFilms
 import com.andersen.internship.filmsapp.pojo.films.FilmDTO
 import com.arellomobile.mvp.InjectViewState
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 

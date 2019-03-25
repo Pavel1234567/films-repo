@@ -1,5 +1,6 @@
 package com.andersen.internship.filmsapp.di.modules
 
+import com.andersen.internship.filmsapp.database.AppDatabase
 import com.andersen.internship.filmsapp.mvp.models.ModelFilmsRepository
 import com.andersen.internship.filmsapp.network.api.FilmsApi
 import dagger.Module
@@ -11,6 +12,7 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun modelForFilms(filmsApi: FilmsApi): ModelFilmsRepository =
-        ModelFilmsRepository(filmsApi)
+    fun modelForFilms(filmsApi: FilmsApi, appDatabase: AppDatabase): ModelFilmsRepository =
+        ModelFilmsRepository(filmsApi, appDatabase.filmDao())
+
 }

@@ -1,11 +1,11 @@
 package com.andersen.internship.filmsapp.pojo.films
 
 data class Film(
-    val id: Int,
-    val title: String,
-    val image: String,
-    val year: Int,
-    val country: List<String>,
-    val genre: List<String>,
-    val description: String
+        var id: Int = 0,
+        var title: String = "",
+        var image: String = "",
+        var year: Int = 0,
+        var country: List<String> = listOf(),
+        var genre: List<String> = listOf(),
+        var description: String = ""
 )
