@@ -9,7 +9,7 @@ import io.reactivex.Single
 interface DaoFilms {
 
     @Query("SELECT * FROM filmentity")
-    fun getList() : Single<List<FilmEntity>>
+    fun getListFilms() : Single<List<FilmEntity>>
 
     @Query("SELECT * FROM filmEntity WHERE id = :id")
     fun getFilmById(id: Int): Single<FilmEntity>
