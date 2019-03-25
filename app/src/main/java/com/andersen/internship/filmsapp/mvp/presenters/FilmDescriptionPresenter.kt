@@ -23,7 +23,6 @@ class FilmDescriptionPresenter @Inject constructor(
     }
 
     private fun downloadDescription(){
-        compositeDisposable = CompositeDisposable()
 
         val disposable = modelFilmsInterface
                 .loadFilms()

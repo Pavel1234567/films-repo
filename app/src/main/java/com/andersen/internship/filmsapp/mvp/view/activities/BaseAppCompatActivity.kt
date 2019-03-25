@@ -1,13 +1,11 @@
 package com.andersen.internship.filmsapp.mvp.view.activities
 
-import android.os.Bundle
 import com.andersen.internship.filmsapp.App
 import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
 import com.arellomobile.mvp.MvpAppCompatActivity
-import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.toolbar.*
 
-abstract class BaseAppCompatActivity: MvpAppCompatActivity() {
+abstract class BaseAppCompatActivity : MvpAppCompatActivity() {
 
     protected val baseActivityComponent by lazy {
         App.get(this)
@@ -15,11 +13,8 @@ abstract class BaseAppCompatActivity: MvpAppCompatActivity() {
             .baseActivityComponent(BaseActivityModule())
     }
 
-    protected fun onCreate(savedInstanceState: Bundle?, layoutId: Int){
-
-        super.onCreate(savedInstanceState)
-        setContentView(layoutId)
+    override fun setContentView(layoutResID: Int) {
+        super.setContentView(layoutResID)
         setSupportActionBar(toolbar)
-
     }
 }
