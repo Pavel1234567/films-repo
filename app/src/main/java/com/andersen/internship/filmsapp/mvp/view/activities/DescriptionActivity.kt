@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_description.*
 import javax.inject.Inject
 
 class DescriptionActivity : BaseAppCompatActivity(), ViewFilmDescription {
+    override fun getContentLayoutId() = R.layout.activity_description
 
     @Inject
     @InjectPresenter
@@ -38,6 +39,5 @@ class DescriptionActivity : BaseAppCompatActivity(), ViewFilmDescription {
             .injectDescriptionActivity(this)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_description)
     }
 }

@@ -1,5 +1,6 @@
 package com.andersen.internship.filmsapp.mvp.view.activities
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
@@ -18,6 +19,7 @@ import javax.inject.Inject
 
 
 class MainActivity : BaseAppCompatActivity(), ViewListFilms {
+    override fun getContentLayoutId() = R.layout.activity_main
 
     @Inject
     @InjectPresenter
@@ -39,7 +41,6 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
             .injectMainActivity(this)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         initRecyclerView()
     }
 
