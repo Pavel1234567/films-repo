@@ -18,6 +18,7 @@ import javax.inject.Inject
 
 
 class MainActivity : BaseAppCompatActivity() {
+    override fun getContentLayoutId() = R.layout.activity_main
 
     @Inject
     @InjectPresenter
@@ -39,7 +40,6 @@ class MainActivity : BaseAppCompatActivity() {
             .injectMainActivity(this)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         initRecyclerView()
     }
 

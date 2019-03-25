@@ -1,5 +1,6 @@
 package com.andersen.internship.filmsapp.mvp.view.activities
 
+import android.os.Bundle
 import android.widget.Toast
 import com.andersen.internship.filmsapp.App
 import com.andersen.internship.filmsapp.di.modules.BaseActivityModule
@@ -15,12 +16,14 @@ abstract class BaseAppCompatActivity : MvpAppCompatActivity(), ViewFilmsInterfac
             .baseActivityComponent(BaseActivityModule())
     }
 
-    override fun setContentView(layoutResID: Int) {
-        super.setContentView(layoutResID)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(getContentLayoutId())
         setSupportActionBar(toolbar)
     }
 
     override fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
+    abstract fun getContentLayoutId(): Int
 }
