@@ -1,6 +1,5 @@
 package com.andersen.internship.filmsapp.mvp.view.activities
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.di.modules.DescriptionActivityModule
@@ -32,16 +31,13 @@ class DescriptionActivity : BaseAppCompatActivity(), ViewFilmDescription {
         descriptionTextView.text = film.description
     }
 
-    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
-
 
         baseActivityComponent
             .descriptionActivityComponent(DescriptionActivityModule(this))
             .injectDescriptionActivity(this)
 
-
-        super.onCreate(savedInstanceState, R.layout.activity_description)
-
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_description)
     }
 }

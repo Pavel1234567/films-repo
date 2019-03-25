@@ -1,6 +1,5 @@
 package com.andersen.internship.filmsapp.mvp.view.activities
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
@@ -33,15 +32,14 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
     @Inject
     lateinit var adapter: FilmItemAdapter
 
-    @SuppressLint("MissingSuperCall")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         baseActivityComponent
             .mainActivityComponent(MainActivityModule(this))
             .injectMainActivity(this)
 
-        onCreate(savedInstanceState, R.layout.activity_main)
-
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
         initRecyclerView()
     }
 
