@@ -1,6 +1,5 @@
 package com.andersen.internship.filmsapp.pojo.films
 
-
 data class Film(
     val id: Int,
     val title: String,

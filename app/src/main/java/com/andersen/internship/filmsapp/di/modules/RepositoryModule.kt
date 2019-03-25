@@ -13,5 +13,4 @@ class RepositoryModule {
     @Provides
     fun modelForFilms(filmsApi: FilmsApi): ModelFilmsRepository =
         ModelFilmsRepository(filmsApi)
-
 }

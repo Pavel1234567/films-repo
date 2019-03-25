@@ -3,4 +3,9 @@
     <dimen name="recycler_view_margin">8dp</dimen>
     <dimen name="linear_layout_padding">2dp</dimen>
     <dimen name="card_view_layout_margin">4dp</dimen>
+
+    <dimen name="text_view_size">20sp</dimen>
+    <dimen name="image_view_width">600dp</dimen>
+    <dimen name="image_view_height">900dp</dimen>
+
 </resources>

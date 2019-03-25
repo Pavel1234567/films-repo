@@ -4,20 +4,21 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.view.View
+import android.widget.Toast
 import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
+import com.andersen.internship.filmsapp.mvp.contracts.main.ViewListFilms
 import com.andersen.internship.filmsapp.mvp.presenters.FilmsPresenter
 import com.andersen.internship.filmsapp.pojo.films.FilmDTO
 import com.andersen.internship.filmsapp.ui.adapters.FilmItemAdapter
 import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.content_main.*
-import kotlinx.android.synthetic.main.toolbar.*
 import javax.inject.Inject
 
 
-class MainActivity : BaseAppCompatActivity() {
+class MainActivity : BaseAppCompatActivity(), ViewListFilms {
     override fun getContentLayoutId() = R.layout.activity_main
 
     @Inject
@@ -65,4 +66,9 @@ class MainActivity : BaseAppCompatActivity() {
         recyclerView.visibility = View.VISIBLE
         adapter.listFilms = list
     }
+
+    override fun showError(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
 }

@@ -12,7 +12,8 @@ import kotlinx.android.synthetic.main.item_films.view.*
 import javax.inject.Inject
 
 class FilmItemAdapter @Inject constructor(
-    private val widthAndHeightOfImageView: Pair<Int, Int>
+    private val widthAndHeightOfImageView: Pair<Int, Int>,
+    private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<FilmItemAdapter.FilmsHolder>() {
 
     var listFilms = emptyList<FilmDTO>()
@@ -36,6 +37,8 @@ class FilmItemAdapter @Inject constructor(
 
         val film = listFilms[position]
         filmsHolder.titleTextView.text = film.title
+
+        filmsHolder.cardView.setOnClickListener { onItemClickListener.onItemClick(film.id) }
         imageView.loadImage(film.image)
     }
 
@@ -43,5 +46,9 @@ class FilmItemAdapter @Inject constructor(
         val cardView: CardView = itemView.card_view
         val titleTextView = itemView.titleTextView
         val imageViewPoster = itemView.imageViewPoster
+    }
+
+    interface OnItemClickListener{
+        fun onItemClick(id: Int)
     }
 }

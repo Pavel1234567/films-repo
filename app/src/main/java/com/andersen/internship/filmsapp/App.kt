@@ -35,7 +35,6 @@ class App: Application() {
     }
 
     companion object {
-
         fun get(activity: Activity): App {
             return activity.application as App
         }
