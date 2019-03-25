@@ -34,8 +34,8 @@ class FilmItemAdapter @Inject constructor(
         val imageView = filmsHolder.imageViewPoster
         imageView.layoutParams.width = widthAndHeightOfImageView.first
         imageView.layoutParams.height = widthAndHeightOfImageView.second
-
         val film = listFilms[position]
+
         filmsHolder.titleTextView.text = film.title
 
         filmsHolder.cardView.setOnClickListener { onItemClickListener.onItemClick(film.id) }

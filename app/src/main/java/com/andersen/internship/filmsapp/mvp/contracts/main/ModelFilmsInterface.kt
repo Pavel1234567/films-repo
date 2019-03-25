@@ -6,4 +6,5 @@ import io.reactivex.Single
 interface ModelFilmsInterface {
 
     fun loadFilms(): Single<List<Film>>
+    fun loadFilmById(id: Int): Single<Film>
 }

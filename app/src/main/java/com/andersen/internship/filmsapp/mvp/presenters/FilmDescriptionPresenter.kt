@@ -13,25 +13,20 @@ import javax.inject.Inject
 class FilmDescriptionPresenter @Inject constructor(
     private val modelFilmsInterface: ModelFilmsInterface,
     private val selectedItemId: Int
-): BasePresenter<ViewFilmDescription>(){
+) : BasePresenter<ViewFilmDescription>() {
 
     override fun onFirstViewAttach() {
-
         super.onFirstViewAttach()
-        Timber.tag("myLog").d("onFirstViewAttach")
         downloadDescription()
     }
 
-    private fun downloadDescription(){
+    private fun downloadDescription() {
 
         val disposable = modelFilmsInterface
-                .loadFilms()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { list ->
-                    val description = list.single { it.id == selectedItemId }
-                    viewState.showDescription(description)
-                }
+            .loadFilmById(selectedItemId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { film -> viewState.showDescription(film) }
 
         compositeDisposable.add(disposable)
     }
