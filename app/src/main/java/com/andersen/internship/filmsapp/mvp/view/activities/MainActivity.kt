@@ -3,6 +3,7 @@ package com.andersen.internship.filmsapp.mvp.view.activities
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import com.andersen.internship.filmsapp.R
@@ -42,6 +43,11 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
 
         super.onCreate(savedInstanceState)
         initRecyclerView()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_for_toolbar, menu)
+        return true
     }
 
     private fun initRecyclerView() {

@@ -1,0 +1,31 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".mvp.view.activities.MainActivity">
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="@string/search"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        app:showAsAction="ifRoom" />
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/genre"
+            android:title="@string/genre"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/country"
+            android:title="@string/country"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/year"
+            android:title="@string/year"
+            app:showAsAction="never" />
+    </group>
+
+</menu>
