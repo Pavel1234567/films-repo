@@ -1,12 +1,12 @@
 package com.andersen.internship.filmsapp.mvp.view.activities
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.SearchView
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
-import com.andersen.internship.filmsapp.R
 import com.andersen.internship.filmsapp.SizeCalculator
 import com.andersen.internship.filmsapp.di.modules.MainActivityModule
 import com.andersen.internship.filmsapp.mvp.contracts.main.ViewListFilms
@@ -17,10 +17,12 @@ import com.arellomobile.mvp.presenter.InjectPresenter
 import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.content_main.*
 import javax.inject.Inject
-
+import android.view.inputmethod.EditorInfo
+import com.andersen.internship.filmsapp.R
+import com.andersen.internship.filmsapp.pojo.films.Film
 
 class MainActivity : BaseAppCompatActivity(), ViewListFilms {
-    override fun getContentLayoutId() = R.layout.activity_main
+    override fun getContentLayoutId() = com.andersen.internship.filmsapp.R.layout.activity_main
 
     @Inject
     @InjectPresenter
@@ -46,8 +48,33 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+
         menuInflater.inflate(R.menu.menu_for_toolbar, menu)
+
+        val searchItem = menu?.findItem(R.id.action_search)
+        val searchView = searchItem?.actionView as SearchView
+
+        searchView.imeOptions = EditorInfo.IME_ACTION_DONE
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean = false
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                filmsPresenter.search(newText)
+                return false
+            }
+
+        })
         return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        val itemId = item?.itemId
+        when(itemId){
+            R.id.genre -> filmsPresenter.selectedParameter = Film::genre.name
+            R.id.year -> filmsPresenter.selectedParameter = Film::year.name
+            R.id.country -> filmsPresenter.selectedParameter = Film::country.name
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun initRecyclerView() {
@@ -70,11 +97,10 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
 
     override fun showFilms(list: List<FilmDTO>) {
         recyclerView.visibility = View.VISIBLE
-        adapter.listFilms = list
+        adapter.fullListFilms = list
     }
 
     override fun showError(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
-
 }

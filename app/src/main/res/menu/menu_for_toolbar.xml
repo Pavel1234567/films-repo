@@ -6,26 +6,34 @@
     <item
         android:id="@+id/action_search"
         android:icon="@android:drawable/ic_menu_search"
-        android:title="@string/search"
+        android:orderInCategory="1"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="ifRoom" />
 
-    <group android:checkableBehavior="single">
+    <item
+        android:id="@+id/parameter"
+        android:orderInCategory="2"
+        android:title="@string/parameters"
+        app:showAsAction="withText|ifRoom">
 
-        <item
-            android:id="@+id/genre"
-            android:title="@string/genre"
-            app:showAsAction="never" />
+        <menu>
 
-        <item
-            android:id="@+id/country"
-            android:title="@string/country"
-            app:showAsAction="never" />
+            <item
+                android:id="@+id/genre"
+                android:title="@string/genre"
+                app:showAsAction="never" />
 
-        <item
-            android:id="@+id/year"
-            android:title="@string/year"
-            app:showAsAction="never" />
-    </group>
+            <item
+                android:id="@+id/country"
+                android:title="@string/country"
+                app:showAsAction="never" />
+
+            <item
+                android:id="@+id/year"
+                android:title="@string/year"
+                app:showAsAction="never" />
+
+        </menu>
+    </item>
 
 </menu>

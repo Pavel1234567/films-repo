@@ -16,10 +16,17 @@ class FilmItemAdapter @Inject constructor(
     private val onItemClickListener: OnItemClickListener
 ) : RecyclerView.Adapter<FilmItemAdapter.FilmsHolder>() {
 
-    var listFilms = emptyList<FilmDTO>()
+
+    var visibleListFilms = emptyList<FilmDTO>()
         set(value) {
             field = value
             notifyDataSetChanged()
+        }
+
+    var fullListFilms = emptyList<FilmDTO>()
+        set(value) {
+            field = value
+            visibleListFilms = value
         }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): FilmsHolder {
@@ -27,14 +34,14 @@ class FilmItemAdapter @Inject constructor(
         return FilmsHolder(cardView)
     }
 
-    override fun getItemCount(): Int = listFilms.size
+    override fun getItemCount(): Int = this.visibleListFilms.size
 
     override fun onBindViewHolder(filmsHolder: FilmsHolder, position: Int) {
 
         val imageView = filmsHolder.imageViewPoster
         imageView.layoutParams.width = widthAndHeightOfImageView.first
         imageView.layoutParams.height = widthAndHeightOfImageView.second
-        val film = listFilms[position]
+        val film = this.visibleListFilms[position]
 
         filmsHolder.titleTextView.text = film.title
 

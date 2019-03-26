@@ -7,7 +7,7 @@ import com.andersen.internship.filmsapp.mvp.view.activities.BaseAppCompatActivit
 import com.andersen.internship.filmsapp.di.scopes.BaseActivityScope
 import dagger.Subcomponent
 
-@Subcomponent(modules = arrayOf(BaseActivityModule::class))
+@Subcomponent(modules = [BaseActivityModule::class])
 @BaseActivityScope
 interface BaseActivityComponent {
 

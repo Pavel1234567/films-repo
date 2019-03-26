@@ -5,4 +5,5 @@
     <string name="country">страна</string>
     <string name="genre">жанр</string>
     <string name="search">Поиск</string>
+    <string name="parameters">параметры</string>
 </resources>

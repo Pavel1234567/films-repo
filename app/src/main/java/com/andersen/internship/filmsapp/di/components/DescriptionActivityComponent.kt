@@ -6,7 +6,7 @@ import com.andersen.internship.filmsapp.mvp.view.activities.DescriptionActivity
 import dagger.Subcomponent
 
 @DescriptionActivityScope
-@Subcomponent(modules = arrayOf(DescriptionActivityModule::class))
+@Subcomponent(modules = [DescriptionActivityModule::class])
 
 interface DescriptionActivityComponent {
     fun injectDescriptionActivity(descriptionActivity: DescriptionActivity)
