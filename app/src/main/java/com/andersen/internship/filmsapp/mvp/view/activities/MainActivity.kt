@@ -122,7 +122,7 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
 
     override fun showFilms(list: List<FilmDTO>) {
         recyclerView.visibility = View.VISIBLE
-        adapter.fullListFilms = list
+        adapter.visibleListFilms = list
     }
 
     override fun showError(message: String) {

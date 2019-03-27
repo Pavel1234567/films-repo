@@ -23,12 +23,6 @@ class FilmItemAdapter @Inject constructor(
             notifyDataSetChanged()
         }
 
-    var fullListFilms = emptyList<FilmDTO>()
-        set(value) {
-            field = value
-            visibleListFilms = value
-        }
-
     override fun onCreateViewHolder(viewGroup: ViewGroup, p1: Int): FilmsHolder {
         val cardView = LayoutInflater.from(viewGroup.context).inflate(R.layout.item_films, viewGroup, false)
         return FilmsHolder(cardView)
