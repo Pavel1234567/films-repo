@@ -54,6 +54,12 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
 
         menuInflater.inflate(R.menu.menu_for_toolbar, menu)
 
+        initSearchView(menu)
+        initSpinner(menu)
+        return true
+    }
+
+    private fun initSearchView(menu: Menu?){
         val searchItem = menu?.findItem(R.id.action_search)
         val searchView = searchItem?.actionView as SearchView
 
@@ -68,11 +74,14 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
 
         })
 
-        val spinnerItem = menu.findItem(R.id.spinner)
+    }
+
+    private fun initSpinner(menu: Menu?){
+        val spinnerItem = menu?.findItem(R.id.spinner)
         val spinner = spinnerItem?.actionView as Spinner
 
         val adapter = ArrayAdapter.createFromResource(this,
-            R.array.filter_items, R.layout.spinner_view
+                R.array.filter_items, R.layout.spinner_view
         )
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
@@ -90,7 +99,7 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
             }
 
         }
-        return true
+
     }
 
     private fun initRecyclerView() {
