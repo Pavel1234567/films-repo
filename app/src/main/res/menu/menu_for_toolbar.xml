@@ -11,29 +11,9 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/parameter"
+        android:id="@+id/spinner"
         android:orderInCategory="2"
-        android:title="@string/parameters"
-        app:showAsAction="withText|ifRoom">
-
-        <menu>
-
-            <item
-                android:id="@+id/genre"
-                android:title="@string/genre"
-                app:showAsAction="never" />
-
-            <item
-                android:id="@+id/country"
-                android:title="@string/country"
-                app:showAsAction="never" />
-
-            <item
-                android:id="@+id/year"
-                android:title="@string/year"
-                app:showAsAction="never" />
-
-        </menu>
-    </item>
+        app:actionViewClass="android.widget.Spinner"
+        app:showAsAction="ifRoom" />
 
 </menu>

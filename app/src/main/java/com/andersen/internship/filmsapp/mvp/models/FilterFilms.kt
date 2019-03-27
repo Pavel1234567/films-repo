@@ -11,7 +11,6 @@ class FilterFilms: ModelFilter{
     override var fullListFilms: List<Film> = emptyList()
 
     override fun search(inputText: String, selectedParameter: String): Single<List<Film>>{
-        Log.d("filter", "search")
         return if (inputText == ""){
             Single.just(fullListFilms)
         }else{
@@ -22,7 +21,7 @@ class FilterFilms: ModelFilter{
     private fun executeFiltering(inputText: String, selectedParameter: String) = Flowable
             .just(fullListFilms)
             //emit list one by one
-            .flatMapIterable { v -> v }
+            .flatMapIterable { films -> films }
             .filter {
                 when(selectedParameter){
                     Film::genre.name -> filterItemByListField(it.genre, inputText)

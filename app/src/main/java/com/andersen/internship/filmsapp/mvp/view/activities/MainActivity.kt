@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.SearchView
 import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.andersen.internship.filmsapp.SizeCalculator
@@ -18,8 +17,12 @@ import com.arellomobile.mvp.presenter.ProvidePresenter
 import kotlinx.android.synthetic.main.content_main.*
 import javax.inject.Inject
 import android.view.inputmethod.EditorInfo
-import com.andersen.internship.filmsapp.R
+import android.widget.AdapterView
+import android.widget.Spinner
 import com.andersen.internship.filmsapp.pojo.films.Film
+import android.widget.ArrayAdapter
+import com.andersen.internship.filmsapp.R
+
 
 class MainActivity : BaseAppCompatActivity(), ViewListFilms {
     override fun getContentLayoutId() = com.andersen.internship.filmsapp.R.layout.activity_main
@@ -64,17 +67,30 @@ class MainActivity : BaseAppCompatActivity(), ViewListFilms {
             }
 
         })
-        return true
-    }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val itemId = item?.itemId
-        when(itemId){
-            R.id.genre -> filmsPresenter.selectedParameter = Film::genre.name
-            R.id.year -> filmsPresenter.selectedParameter = Film::year.name
-            R.id.country -> filmsPresenter.selectedParameter = Film::country.name
+        val spinnerItem = menu.findItem(R.id.spinner)
+        val spinner = spinnerItem?.actionView as Spinner
+
+        val adapter = ArrayAdapter.createFromResource(this,
+            R.array.filter_items, R.layout.spinner_view
+        )
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+
+            }
+
+            override fun onItemSelected(parent: AdapterView<*>?, itemSelected: View?, selectedItemPosition: Int, selectedId: Long) {
+                when(selectedItemPosition){
+                    0 -> filmsPresenter.selectedParameter = Film::year.name
+                    1 -> filmsPresenter.selectedParameter = Film::country.name
+                    2 -> filmsPresenter.selectedParameter = Film::genre.name
+                }
+            }
+
         }
-        return super.onOptionsItemSelected(item)
+        return true
     }
 
     private fun initRecyclerView() {
